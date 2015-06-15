@@ -166,7 +166,6 @@ nnoremap Y y$
 
 " Make 'jk' leave insert mode
 inoremap jk <esc>
-inoremap <esc> <nop>
 
 """"""""""""""""""""""""""""""""""
 "      Plugins Customization     "
@@ -201,6 +200,7 @@ nnoremap <silent><c-n> :NERDTreeToggle<cr>
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", "my-snippets"]
 
 " Snnm
 let g:snnmapp = '/home/ewilazarus/.pyenv/versions/3.4.3/bin/snnm'

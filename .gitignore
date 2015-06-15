@@ -2,6 +2,8 @@
 vim.symlink/
 !vim.symlink/bundle/Vundle.vim
 !vim.symlink/bundle/Vundle.vim/*
+!vim.symlink/bundle/my-snippets
+!vim.symlink/bundle/my-snippets/*
 
 # TMUX
 tmux.symlink/
