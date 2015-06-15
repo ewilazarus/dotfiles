@@ -168,8 +168,8 @@ nnoremap Y y$
 inoremap jk <esc>
 
 " Cycle through buffers
-nnoremap , :bnext<cr>
-nnoremap . :bprev<cr>
+nnoremap , :bprev<cr>
+nnoremap . :bnext<cr>
 
 """"""""""""""""""""""""""""""""""
 "      Plugins Customization     "
