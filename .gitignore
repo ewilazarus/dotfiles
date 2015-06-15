@@ -1,0 +1,3 @@
+vim.symlink/
+!vim.symlink/bundle/Vundle.vim
+!vim.symlink/bundle/Vundle.vim/*
