@@ -167,6 +167,10 @@ nnoremap Y y$
 " Make 'jk' leave insert mode
 inoremap jk <esc>
 
+" Cycle through buffers
+nnoremap , :bnext<cr>
+nnoremap . :bprev<cr>
+
 """"""""""""""""""""""""""""""""""
 "      Plugins Customization     "
 """"""""""""""""""""""""""""""""""
