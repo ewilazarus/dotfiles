@@ -1,0 +1,214 @@
+set nocompatible
+filetype off
+
+""""""""""""""""""""""""""""""""""
+"       Plugin Management        "
+""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mileszs/ack.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/syntastic'
+Plugin 'flazz/vim-colorschemes'
+
+call vundle#end()
+filetype plugin indent on
+
+""""""""""""""""""""""""""""""""""
+"          Leader Key            "
+""""""""""""""""""""""""""""""""""
+let mapleader = "\\"
+
+""""""""""""""""""""""""""""""""""
+"       Editor Preferences       "
+""""""""""""""""""""""""""""""""""
+set encoding=utf-8
+
+" No linewrap
+set nowrap
+
+" Tab preferences
+set tabstop=4
+set smarttab
+set shiftwidth=4
+set autoindent
+set shiftround
+set copyindent
+
+" Backspace sanity
+set backspace=indent,eol,start
+
+" Search options
+set showmatch
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+" Prevent vim from creating backup and swap files
+set nobackup
+set noswapfile
+
+" Display '.' for trailing whitespace
+set list
+set listchars=tab:\ \ ,trail:.
+
+" Open file unfolded
+set foldlevel=99
+
+" System shared clipboard
+set clipboard=unnamedplus
+
+" Mouse integration
+set mouse=a
+
+" Supress 'ex-mode'
+nnoremap Q <nop>
+
+" Keep search matches in the middle of the screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Don't move on *
+nnoremap * *<c-o>
+
+" nohlsearch
+nnoremap <leader><space> :noh<cr>
+
+" No annoying documentation preview
+set completeopt=menu
+
+""""""""""""""""""""""""""""""""""
+"           Appearence           "
+""""""""""""""""""""""""""""""""""
+syntax on
+
+" Color Schemes
+"let g:badwolf_darkgutter = 1
+colorscheme jellybeans
+
+" Statusline
+set laststatus=2
+
+" Show line numbers
+set number
+set relativenumber
+
+" Show colum #80
+set colorcolumn=80
+
+" Show highlighted current line
+set cursorline
+hi CursorLineNr ctermfg=DarkGray
+
+""""""""""""""""""""""""""""""""""
+"          My Mappings           "
+""""""""""""""""""""""""""""""""""
+" One less keystroke!
+noremap ; :
+
+" Gets rid of the annoying help menu
+noremap <f1> <esc>
+inoremap <f1> <esc>
+
+" Window Resizing
+noremap <silent>+ :vertical resize +5<cr>
+noremap <silent>_ :vertical resize -5<cr>
+
+" Window Movement
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Swaping lines
+nnoremap <leader>k ddkP
+nnoremap <leader>j ddp
+
+" REdo
+nnoremap U <c-r>
+
+" Format entire file
+nnoremap <silent>=== :normal! gg=G<cr>
+
+" Maps 'H' to BOL and 'L' to EOL
+nnoremap H ^
+nnoremap L $
+
+" Toggle paste mode
+nnoremap <silent> <c-p> :set invpaste<cr>:set paste?<cr>
+inoremap <silent> <c-p> <esc>:set invpaste<cr>:set paste?<cr>
+
+" Mimic non-VIM behavior on insert mode
+inoremap <c-left> <esc>bi
+inoremap <c-right> <esc>ea
+
+" Reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
+
+" Reselection
+nnoremap <leader>V V`]
+
+" Make Y behave like other capitals
+nnoremap Y y$
+
+" Make 'jk' leave insert mode
+inoremap jk <esc>
+inoremap <esc> <nop>
+
+""""""""""""""""""""""""""""""""""
+"      Plugins Customization     "
+""""""""""""""""""""""""""""""""""
+" Airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" Auto-Pair
+let g:AutoPairFlyMode = 1
+let g:AutoPairsShortcutFastWrap = '<f3>'
+
+" CtrlP
+let g:ctrlp_map = '<c-f>'
+
+" NERDCommenter
+nmap <silent>-- <plug>NERDCommenterToggle
+
+" NERDTree
+nnoremap <silent><c-n> :NERDTreeToggle<cr>
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+" Snnm
+let g:snnmapp = '/home/ewilazarus/.pyenv/versions/3.4.3/bin/snnm'
+
+" Syntastic
+let g:synstastic_always_populate_loc_list = 1
+let g:synstastic_auto_loc_list = 1
+let g:synstastic_check_on_open = 1
+
+" Tagbar
+nnoremap <silent>M :TagbarToggle<cr>
+let g:tagbar_autofocus = 1

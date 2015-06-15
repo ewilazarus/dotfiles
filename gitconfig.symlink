@@ -1,0 +1,13 @@
+[user]
+	email = ewilazarus@gmail.com
+	name = Gabriel Lima
+[alias]
+	pom = push -u origin master
+	aa = add -A
+	cm = commit -m
+	co = checkout --
+	d = difftool
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
