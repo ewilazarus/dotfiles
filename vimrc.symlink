@@ -168,8 +168,8 @@ nnoremap Y y$
 inoremap jk <esc>
 
 " Cycle through buffers
-nnoremap , :bprev<cr>
-nnoremap . :bnext<cr>
+nnoremap m :bprev<cr>
+nnoremap , :bnext<cr>
 
 """"""""""""""""""""""""""""""""""
 "      Plugins Customization     "
@@ -195,7 +195,7 @@ let g:AutoPairsShortcutFastWrap = '<f3>'
 let g:ctrlp_map = '<c-f>'
 
 " NERDCommenter
-nmap <silent>-- <plug>NERDCommenterToggle
+map <silent>-- <plug>NERDCommenterToggle
 
 " NERDTree
 nnoremap <silent><c-n> :NERDTreeToggle<cr>
