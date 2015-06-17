@@ -1,4 +1,3 @@
-# Libraries
 build-essentials
 libc6-dev
 libreadline-dev
@@ -10,7 +9,9 @@ libsqlite3-dev
 libbz2-dev
 liblzma-dev
 tk-dev
-# Applications
+numix-icon-theme-circle
+numix-gtk-theme
+unity-tweak-tool
 zsh
 vim
 curl
@@ -18,3 +19,9 @@ tree
 xclip
 ack-grep
 exuberant-ctags
+dropbox
+vlc
+hexchat
+htop
+recordmydesktop
+xournal
