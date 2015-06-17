@@ -1,2 +1,20 @@
+# Libraries
+build-essentials
+libc6-dev
+libreadline-dev
+libz-dev
+libncursesw5-dev
+libssl-dev
+libgdbm-dev
+libsqlite3-dev
+libbz2-dev
+liblzma-dev
+tk-dev
+# Applications
+zsh
+vim
+curl
 tree
 xclip
+ack-grep
+exuberant-ctags
