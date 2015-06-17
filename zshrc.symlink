@@ -119,3 +119,9 @@ alias open='xdg-open'
 alias nopyc='rm *.pyc'
 
 alias snnm='PYENV_VERSION=3.4.3 snnm'
+
+function track_application() {
+	echo $1 >> ~/.pkgs
+}
+
+alias ta='track_application'
