@@ -174,8 +174,8 @@ nnoremap Y y$
 inoremap jk <esc>
 
 " Cycle through buffers
-nnoremap m :bprev<cr>
-nnoremap , :bnext<cr>
+nnoremap <left> :bprev<cr>
+nnoremap <right> :bnext<cr>
 
 " Tweak .vimrc
 command! Vimrc :next $MYVIMRC<cr>
