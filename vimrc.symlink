@@ -7,21 +7,22 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mileszs/ack.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/syntastic'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'ewilazarus/vim-snnm'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'mileszs/ack.vim'
+Plugin 'reedes/vim-pencil'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
@@ -137,6 +138,10 @@ nnoremap <c-l> <c-w>l
 nnoremap <leader>k ddkP
 nnoremap <leader>j ddp
 
+" Move through wrapped lines
+nnoremap j gj
+nnoremap k gk
+
 " REdo
 nnoremap U <c-r>
 
@@ -172,6 +177,27 @@ inoremap jk <esc>
 nnoremap m :bprev<cr>
 nnoremap , :bnext<cr>
 
+" Tweak .vimrc
+command! Vimrc :next $MYVIMRC<cr>
+
+" Make ctrl-f pageup (pair with ctrl-d pagedown)
+nnoremap <c-f> <c-u>
+
+""""""""""""""""""""""""""""""""""
+"          Autocommands          "
+""""""""""""""""""""""""""""""""""
+" Remember last opened line
+augroup RessurrectLine
+	autocmd!
+  	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+
+" Source .vimrc when save
+augroup VimReload
+	autocmd!
+	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
+augroup END
+
 """"""""""""""""""""""""""""""""""
 "      Plugins Customization     "
 """"""""""""""""""""""""""""""""""
@@ -193,7 +219,7 @@ let g:AutoPairFlyMode = 1
 let g:AutoPairsShortcutFastWrap = '<f3>'
 
 " CtrlP
-let g:ctrlp_map = '<c-f>'
+let g:ctrlp_map = '<c-g>'
 
 " NERDCommenter
 map <silent>-- <plug>NERDCommenterToggle
@@ -218,3 +244,12 @@ let g:synstastic_check_on_open = 1
 " Tagbar
 nnoremap <silent>M :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
+
+" Vim-pencil
+augroup pencil
+	autocmd!
+	autocmd FileType markdown,mkd call pencil#init()
+	autocmd FileType text call pencil#init()
+augroup END
+let g:pencil#conceallevel = 0
+let g:pencil#textwidth = 79
