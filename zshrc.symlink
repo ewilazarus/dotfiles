@@ -100,6 +100,7 @@ alias mkvirtualenv2='PYENV_VERSION=2.7.10 mkvirtualenv'
 alias mkvirtualenv3='PYENV_VERSION=3.4.3 mkvirtualenv'
 alias mktmpenv2='PYENV_VERSION=2.7.10 mktmpenv'
 alias mktmpenv3='PYENV_VERSION=3.4.3 mktmpenv'
+alias snnm='PYENV_VERSION=3.4.3 snnm'
 
 # My aliases
 alias ll='ls -alF'
@@ -116,10 +117,9 @@ alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias et='vim ~/.tmux.conf'
 
+alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
 alias nopyc='rm *.pyc'
-
-alias snnm='PYENV_VERSION=3.4.3 snnm'
 
 function trackp() {
 	echo $1 >> ~/.pkgs
