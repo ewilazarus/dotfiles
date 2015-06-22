@@ -183,6 +183,9 @@ command! Vimrc :next $MYVIMRC<cr>
 " Make ctrl-f pageup (pair with ctrl-d pagedown)
 nnoremap <c-f> <c-u>
 
+" Make ctrl-[ jump back from definition (pair with ctrl-] jump to definition)
+nnoremap <c-[> <c-t>
+
 """"""""""""""""""""""""""""""""""
 "          Autocommands          "
 """"""""""""""""""""""""""""""""""
