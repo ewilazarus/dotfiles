@@ -186,6 +186,9 @@ nnoremap <c-f> <c-u>
 " Make ctrl-[ jump back from definition (pair with ctrl-] jump to definition)
 nnoremap <c-[> <c-t>
 
+" Make vim breaK lines (pair with Join lines)
+nnoremap K i<cr><esc>
+
 """"""""""""""""""""""""""""""""""
 "          Autocommands          "
 """"""""""""""""""""""""""""""""""
