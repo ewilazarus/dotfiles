@@ -99,3 +99,8 @@ alias nopyc='rm *.pyc'
 function trackp() {
 	echo $1 >> ~/.pkgs
 }
+
+
+# 6. Misc ---------------------------------------------------------------- {{{1
+
+stty stop undef

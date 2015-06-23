@@ -158,6 +158,9 @@ nnoremap <c-f> <c-u>
 nnoremap d] <c-]>
 nnoremap d[ <c-T>
 
+" TODO
+"nnoremap <c-s> ???
+
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
