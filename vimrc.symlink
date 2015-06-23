@@ -1,12 +1,22 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+"
+" copyright: (c) 2015 Gabriel Lima
+" license: MIT
+"
+
+" CONTENTS:
+
+" 1. Plugin Management --------------------------------------------------- {{{1
+
 set nocompatible
 filetype off
 
-""""""""""""""""""""""""""""""""""
-"       Plugin Management        "
-""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'bling/vim-airline'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
@@ -27,20 +37,29 @@ Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
-""""""""""""""""""""""""""""""""""
-"          Leader Key            "
-""""""""""""""""""""""""""""""""""
+
+" 2. Leader Key ---------------------------------------------------------- {{{1
+
 let mapleader = "\\"
 
-""""""""""""""""""""""""""""""""""
-"       Editor Preferences       "
-""""""""""""""""""""""""""""""""""
-set encoding=utf-8
 
-" No linewrap
-set nowrap
+" 3. Editor Preferences -------------------------------------------------- {{{1
 
-" Tab preferences
+set encoding=utf-8 					" Encoding
+set nowrap							" No line wrap
+set backspace=indent,eol,start		" Backspace Sanity
+set nobackup						" No backup files
+set noswapfile						" No swap files
+set foldlevel=99					" Open file unfolded
+set clipboard=unnamedplus			" System shared clipboard
+set mouse=a							" Mouse integration
+set completeopt=menu				" No annoying documentation preview
+
+" Supress 'ex-mode'
+nnoremap Q <nop>
+
+" 3.1. Tab Preferences --------------------------------------------------- {{{2
+
 set tabstop=4
 set smarttab
 set shiftwidth=4
@@ -48,38 +67,16 @@ set autoindent
 set shiftround
 set copyindent
 
-" Backspace sanity
-set backspace=indent,eol,start
+" 3.2. Search Preferences ------------------------------------------------ {{{2
 
-" Search options
 set showmatch
 set ignorecase
 set smartcase
 set hlsearch
 set incsearch
 
-" Prevent vim from creating backup and swap files
-set nobackup
-set noswapfile
-
-" Display '.' for trailing whitespace
-set list
-set listchars=tab:\ \ ,trail:.
-
-" Open file unfolded
-set foldlevel=99
-
-" System shared clipboard
-set clipboard=unnamedplus
-
-" Mouse integration
-set mouse=a
-
-" Supress 'ex-mode'
-nnoremap Q <nop>
-
 " Keep search matches in the middle of the screen
-nnoremap n nzzzv
+nnoremap n nzzzv			
 nnoremap N Nzzzv
 
 " Don't move on *
@@ -88,22 +85,16 @@ nnoremap * *<c-o>
 " nohlsearch
 nnoremap <leader><space> :noh<cr>
 
-" No annoying documentation preview
-set completeopt=menu
 
-""""""""""""""""""""""""""""""""""
-"           Appearence           "
-""""""""""""""""""""""""""""""""""
+" 4. Appearence ---------------------------------------------------------- {{{1
+
 syntax on
-
-" Color Schemes
-"let g:badwolf_darkgutter = 1
 colorscheme jellybeans
 
 " Statusline
 set laststatus=2
 
-" Show line numbers
+" Line numbers
 set number
 set relativenumber
 
@@ -114,15 +105,16 @@ set colorcolumn=80
 set cursorline
 hi CursorLineNr ctermfg=DarkGray
 
-""""""""""""""""""""""""""""""""""
-"          My Mappings           "
-""""""""""""""""""""""""""""""""""
+" Display '.' for trailing whitespace
+set list
+set listchars=tab:\ \ ,trail:.
+
+" 5. Mappings ------------------------------------------------------------ {{{1
+
+" 5.1. Normal Mode ------------------------------------------------------- {{{2
+
 " One less keystroke!
 noremap ; :
-
-" Gets rid of the annoying help menu
-noremap <f1> <esc>
-inoremap <f1> <esc>
 
 " Window Resizing
 noremap <silent>+ :vertical resize +5<cr>
@@ -145,53 +137,51 @@ nnoremap k gk
 " REdo
 nnoremap U <c-r>
 
-" Format entire file
-nnoremap <silent>=== :normal! gg=G<cr>
-
 " Maps 'H' to BOL and 'L' to EOL
 nnoremap H ^
 nnoremap L $
 
 " Toggle paste mode
 nnoremap <silent> <c-p> :set invpaste<cr>:set paste?<cr>
-inoremap <silent> <c-p> <esc>:set invpaste<cr>:set paste?<cr>
-
-" Mimic non-VIM behavior on insert mode
-inoremap <c-left> <esc>bi
-inoremap <c-right> <esc>ea
-
-" Reselect visual block after indent
-vnoremap < <gv
-vnoremap > >gv
-
-" Reselection
-nnoremap <leader>V V`]
 
 " Make Y behave like other capitals
 nnoremap Y y$
-
-" Make 'jk' leave insert mode
-inoremap jk <esc>
 
 " Cycle through buffers
 nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
+" Make 'c-f' pageup (pair with 'c-d' pagedown)
+nnoremap <c-f> <c-u>
+
+" Make 'c-[' jump back from definition (pair with 'c-]' jump to definition)
+nnoremap <c-[> <c-t>
+
+" Make 'K' break line (pair with 'J' join lines)
+nnoremap K i<cr><esc>
+
+
+" 5.2. Insert Mode ------------------------------------------------------- {{{2
+
+" Make 'jk' leave insert mode
+inoremap jk <esc>
+
+
+" 5.3. Visual Mode ------------------------------------------------------- {{{2
+
+" Reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
+
+
+" 5.4. Command Mode ------------------------------------------------------ {{{2
+
 " Tweak .vimrc
 command! Vimrc :next $MYVIMRC<cr>
 
-" Make ctrl-f pageup (pair with ctrl-d pagedown)
-nnoremap <c-f> <c-u>
 
-" Make ctrl-[ jump back from definition (pair with ctrl-] jump to definition)
-nnoremap <c-[> <c-t>
+" 6. Autocommands -------------------------------------------------------- {{{1
 
-" Make vim breaK lines (pair with Join lines)
-nnoremap K i<cr><esc>
-
-""""""""""""""""""""""""""""""""""
-"          Autocommands          "
-""""""""""""""""""""""""""""""""""
 " Remember last opened line
 augroup RessurrectLine
 	autocmd!
@@ -204,9 +194,9 @@ augroup VimReload
 	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
 augroup END
 
-""""""""""""""""""""""""""""""""""
-"      Plugins Customization     "
-""""""""""""""""""""""""""""""""""
+
+" 7. Plugin Customization ------------------------------------------------ {{{1
+
 " Airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
