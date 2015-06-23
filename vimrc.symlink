@@ -246,4 +246,3 @@ augroup pencil
 	autocmd FileType text call pencil#init()
 augroup END
 let g:pencil#conceallevel = 0
-let g:pencil#textwidth = 79
