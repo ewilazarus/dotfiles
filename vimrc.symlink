@@ -43,7 +43,7 @@ filetype plugin indent on
 
 " 2. Leader Key ---------------------------------------------------------- {{{1
 
-let mapleader = "\\"
+let mapleader = " "
 
 
 " 3. Editor Preferences -------------------------------------------------- {{{1
@@ -153,6 +153,10 @@ nnoremap <right> :bnext<cr>
 
 " Make ctrl-f pageup (pair with ctrl-d pagedown)
 nnoremap <c-f> <c-u>
+
+" Navigation between definition and usage
+nnoremap d] <c-]>
+nnoremap d[ <c-T>
 
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
