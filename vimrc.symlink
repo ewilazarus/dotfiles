@@ -37,6 +37,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'mhinz/vim-sayonara'
 
 call vundle#end()
 filetype plugin indent on
@@ -158,6 +159,9 @@ nnoremap <c-f> <c-u>
 nnoremap d] <c-]>
 nnoremap d[ <c-T>
 
+" Save file
+nnoremap <leader>w :w<cr>
+
 " TODO
 "nnoremap <c-s> ???
 
@@ -249,3 +253,6 @@ augroup pencil
 	autocmd FileType text call pencil#init()
 augroup END
 let g:pencil#conceallevel = 0
+
+" Sayonara
+nnoremap <leader>q :Sayonara<cr>
