@@ -1,3 +1,6 @@
+" vim: fdm=marker
+" vim: foldlevel=0
+
 "        _
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
@@ -47,7 +50,7 @@ let mapleader = "\\"
 
 set encoding=utf-8 					" Encoding
 set nowrap							" No line wrap
-set backspace=indent,eol,start		" Backspace Sanity
+set backspace=indent,eol,start		" Backspace sanity
 set nobackup						" No backup files
 set noswapfile						" No swap files
 set foldlevel=99					" Open file unfolded
@@ -57,6 +60,7 @@ set completeopt=menu				" No annoying documentation preview
 
 " Supress 'ex-mode'
 nnoremap Q <nop>
+
 
 " 3.1. Tab Preferences --------------------------------------------------- {{{2
 
@@ -76,7 +80,7 @@ set hlsearch
 set incsearch
 
 " Keep search matches in the middle of the screen
-nnoremap n nzzzv			
+nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Don't move on *
@@ -114,7 +118,7 @@ set listchars=tab:\ \ ,trail:.
 " 5.1. Normal Mode ------------------------------------------------------- {{{2
 
 " One less keystroke!
-noremap ; :
+nnoremap ; :
 
 " Window Resizing
 noremap <silent>+ :vertical resize +5<cr>
@@ -148,8 +152,8 @@ nnoremap <silent> <c-p> :set invpaste<cr>:set paste?<cr>
 nnoremap Y y$
 
 " Cycle through buffers
-nnoremap <left> :bprev<cr>
-nnoremap <right> :bnext<cr>
+"nnoremap <left> :bprev<cr>
+"nnoremap <right> :bnext<cr>
 
 " Make 'c-f' pageup (pair with 'c-d' pagedown)
 nnoremap <c-f> <c-u>
