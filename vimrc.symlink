@@ -162,9 +162,6 @@ nnoremap d[ <c-T>
 " Save file
 nnoremap <leader>w :w<cr>
 
-" TODO
-"nnoremap <c-s> ???
-
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -220,7 +217,7 @@ let g:AutoPairFlyMode = 1
 let g:AutoPairsShortcutFastWrap = '<f3>'
 
 " CtrlP
-let g:ctrlp_map = '<c-g>'
+let g:ctrlp_map = '<c-s>'
 
 " NERDCommenter
 map <silent>-- <plug>NERDCommenterToggle
