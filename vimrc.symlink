@@ -168,6 +168,12 @@ nnoremap <leader>w :w<cr>
 " Make 'jk' leave insert mode
 inoremap jk <esc>
 
+" Make " more practical in a PT-BR keyboard
+imap '' "
+
+" Navigate pairs
+inoremap <c-l> <esc>/[)}"'\]>]<cr>:nohl<cr>a
+
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 
@@ -214,7 +220,7 @@ let g:airline_symbols.linenr = ''
 
 " Auto-Pair
 let g:AutoPairFlyMode = 1
-let g:AutoPairsShortcutFastWrap = '<f3>'
+let g:AutoPairsShortcutFastWrap = '<f4>'
 
 " CtrlP
 let g:ctrlp_map = '<c-s>'
