@@ -32,6 +32,7 @@ bind ^A select-pane -t :.+
 
 set -g default-terminal "screen-256color"
 
+
 # 3. Status Bar ---------------------------------------------------------- {{{1
 
 set -g status-utf8 on
