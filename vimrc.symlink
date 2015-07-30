@@ -21,6 +21,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
@@ -29,12 +30,15 @@ Plugin 'honza/vim-snippets'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'mattn/emmet-vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'reedes/vim-pencil'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-sayonara'
@@ -87,7 +91,8 @@ nnoremap * *<c-o>
 " 4. Appearence ---------------------------------------------------------- {{{1
 
 syntax on
-colorscheme jellybeans
+"colorscheme jellybeans
+colorscheme badwolf
 
 " Statusline
 set laststatus=2
@@ -125,8 +130,12 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Swaping lines
-nnoremap <leader>k ddkP
-nnoremap <leader>j ddp
+nnoremap \j ddp
+nnoremap \k ddkP
+
+" Add blank lines before or after
+nnoremap <leader>j o<esc>k
+nnoremap <leader>k O<esc>j
 
 " Move through wrapped lines
 nnoremap j gj
@@ -162,6 +171,8 @@ nnoremap d[ <c-T>
 " Save file
 nnoremap <leader>w :w<cr>
 
+" Force quit
+nnoremap <leader><leader>q :q!<cr>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -236,6 +247,12 @@ let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsSnippetDirectories = ["UltiSnips", "my-snippets"]
+
+" Rainbow-Parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Snnm
 let g:snnmapp = '/home/ewilazarus/.pyenv/versions/3.4.3/bin/snnm'
