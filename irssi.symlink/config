@@ -20,7 +20,8 @@ channels = (
   { name = "#python"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#python-br"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "##c"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#javascript"; chatnet = "freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
