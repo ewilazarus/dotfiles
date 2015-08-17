@@ -1,4 +1,5 @@
 build-essentials
+automake
 libc6-dev
 libreadline-dev
 libz-dev
