@@ -45,11 +45,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 # 2. PATH ---------------------------------------------------------------- {{{1
-
-# Add PYENV to path
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-
 # Add personal scripts to path
 export PATH="$HOME/Scripts:$PATH"
 
@@ -66,14 +61,6 @@ source $VIRTUALENVWRAPPER_SCRIPT
 
 
 # 4. Aliases ------------------------------------------------------------- {{{1
-
-alias python2='PYENV_VERSION=2.7.10 python'
-alias python3='PYENV_VERSION=3.4.3 python'
-alias mkvirtualenv2='PYENV_VERSION=2.7.10 mkvirtualenv'
-alias mkvirtualenv3='PYENV_VERSION=3.4.3 mkvirtualenv'
-alias mktmpenv2='PYENV_VERSION=2.7.10 mktmpenv'
-alias mktmpenv3='PYENV_VERSION=3.4.3 mktmpenv'
-alias snnm='PYENV_VERSION=3.4.3 snnm'
 
 alias ll='ls -alF'
 alias la='la -A'
@@ -92,7 +79,6 @@ alias et='vim ~/.tmux.conf'
 alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
 alias nopyc='rm *.pyc'
-
 
 # 5. Functions ----------------------------------------------------------- {{{1
 
