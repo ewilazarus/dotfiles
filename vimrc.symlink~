@@ -21,17 +21,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
+Plugin 'chrisbra/NrrwRgn'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/emmet-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'Raimondi/delimitMate'
+Plugin 'reedes/vim-pencil'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -86,7 +89,55 @@ nnoremap N Nzzzv
 " Don't move on *
 nnoremap * *<c-o>
 
+float alpha, eAlpha, e2Alpha, N;
+CMatrix<int> *helperMatrix;
 
+void _setup(float sigma, int xSize, int ySize)
+{
+	alpha = 5 / sqrt(4*M_PI*sigma*sigma);
+	eAlpha = exp(-alpha);
+	e2Alpha = exp(-2*alpha);
+	N = pow(1 - eAlpha, 2) / (1 + 2*alpha*eAlpha - e2Alpha);
+
+	helperMatrix = new CMatrix<int>(xSize, ySize, 0);
+}
+
+void _teardown()
+{
+	delete helperMatrix;
+}
+
+float _calculate(float i, float iM1, float fIM1, float fIM2, float iP1,
+		float iP2, float fIP1, float fIP2)
+{
+	float f, g;
+	f = N * (i + eAlpha*(alpha - 1)*iM1) + 2*eAlpha*fIM1 - e2Alpha*fIM2;
+	g = N * (eAlpha*(alpha + 1)*iP1 - e2Alpha*iP2) + 2*eAlpha*fIP1 - e2Alpha*fIP2;
+
+	return f + g;
+}
+
+float _rfX(CMatrix<float> *filteredImage, int x, int y)
+{
+	int ySize = filteredImage->ySize();
+
+	if (y < 0 || y > ySize - 2) return 0.0;
+	if ((*helperMatrix)(x, y)) return (*filteredImage)(x, y);
+
+	(*helperMatrix)(x, y) = 1;
+	//printf("Calculating (%d, %d) ...\n", x, y);
+
+	float i = (*filteredImage)(x, y);
+	float iM1 = (y - 1) < 0 ? 0 : (*filteredImage)(x, y - 1);
+	float fIM1 = (*filteredImage)(x, y - 1) = _rfX(filteredImage, x, y - 1);
+	float fIM2 = (*filteredImage)(x, y - 2) = _rfX(filteredImage, x, y - 2);
+	float iP1 = (y + 1) > ySize ? 0 : (*filteredImage)(x, y + 1);
+	float iP2 = (y + 2) > ySize ? 0 : (*filteredImage)(x, y + 2);
+	float fIP1 = (*filteredImage)(x, y + 1) = _rfX(filteredImage, x, y + 1);
+	float fIP2 = (*filteredImage)(x, y + 2) = _rfX(filteredImage, x, y + 2);
+
+	return _calculate(i, iM1, fIM1, fIM2, iP1, iP2, fIP1, fIP2);
+}
 " 4. Appearence ---------------------------------------------------------- {{{1
 
 syntax on
@@ -164,8 +215,7 @@ nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
 " Make ctrl-f pageup (pair with ctrl-d pagedown)
-nnoremap <c-d> <c-u>
-nnoremap <c-s> <c-d>
+nnoremap <c-f> <c-u>
 
 " Navigation between definition and usage
 nnoremap d] <c-]>
@@ -185,8 +235,8 @@ inoremap jk <esc>
 " Make " more practical in a PT-BR keyboard
 imap '' "
 
-" Navigate right without arrows
-inoremap <c-l> <right>
+" Navigate pairs
+inoremap <c-l> <esc>/[)}"'\]>]<cr>:nohl<cr>a
 
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
@@ -232,12 +282,12 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" CtrlP
-let g:ctrlp_map = '<c-f>'
+" Auto-Pair
+let g:AutoPairFlyMode = 1
+let g:AutoPairsShortcutFastWrap = '<f4>'
 
-" DelimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+" CtrlP
+let g:ctrlp_map = '<c-s>'
 
 " NERDCommenter
 map <silent>-- <plug>NERDCommenterToggle
@@ -268,8 +318,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 " Tagbar
-nnoremap <silent><c-m> :TagbarToggle<cr>
+nnoremap <silent>M :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
+
+" Vim-pencil
+augroup pencil
+	autocmd!
+	autocmd FileType markdown,mkd call pencil#init()
+	autocmd FileType text call pencil#init()
+augroup END
+let g:pencil#conceallevel = 0
 
 " YouCompleteMe
 let g:ycm_show_diagnostics_ui = 0
