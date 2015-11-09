@@ -37,6 +37,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
@@ -95,7 +96,8 @@ colorscheme jellybeans
 "colorscheme badwolf
 
 " Transparent background
-"hi Normal ctermbg=none
+hi normal ctermbg=none
+hi nontext ctermbg=none
 
 " Statusline
 set laststatus=2
@@ -111,9 +113,12 @@ set colorcolumn=80
 set cursorline
 hi CursorLineNr ctermfg=DarkGray
 
+" Show highlighted selection
+hi Visual ctermfg=LightGreen
+
 " Display '.' for trailing whitespace
-set list
-set listchars=tab:\ \ ,trail:.
+"set list
+"set listchars=tab:\ \ ,trail:.
 
 " 5. Mappings ------------------------------------------------------------ {{{1
 
@@ -179,7 +184,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader><leader>q :q!<cr>
 
 " Select last modifyed text
-nnoremap <c-b> `[v`]
+nnoremap <c-g> `[v`]
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -277,7 +282,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 " Tagbar
-nnoremap <silent><c-m> :TagbarToggle<cr>
+nnoremap <silent><c-b> :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
 
 " YouCompleteMe
