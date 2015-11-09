@@ -95,10 +95,6 @@ syntax on
 colorscheme jellybeans
 "colorscheme badwolf
 
-" Transparent background
-hi normal ctermbg=none
-hi nontext ctermbg=none
-
 " Statusline
 set laststatus=2
 
@@ -169,13 +165,13 @@ nnoremap Y y$
 nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
-" Make ctrl-f pageup (pair with ctrl-d pagedown)
+" Make ctrl-d pageup, ctrl-s pagedown
 nnoremap <c-d> <c-u>
 nnoremap <c-s> <c-d>
 
 " Navigation between definition and usage
-nnoremap d] <c-]>
-nnoremap d[ <c-T>
+nnoremap <c-r> <c-]>
+nnoremap <c-e> <c-T>
 
 " Save file
 nnoremap <leader>w :w<cr>
@@ -185,6 +181,10 @@ nnoremap <leader><leader>q :q!<cr>
 
 " Select last modifyed text
 nnoremap <c-g> `[v`]
+
+" Toggles 'transparent' mode
+nnoremap <silent><up> :hi normal ctermbg=233<cr>:hi nontext ctermbg=233<cr>
+nnoremap <silent><down> :hi normal ctermbg=none<cr>:hi nontext ctermbg=none<cr>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -198,14 +198,16 @@ inoremap <c-l> <right>
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 "
-" Make 'jk' and 'kj' leave visual mode
-vnoremap jk <esc>
-vnoremap kj <esc>
+" Make 'space' leave visual mode
+vnoremap <leader> <esc>
 
 " Reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
 
+" Maps 'H' to BOL and 'L' to EOL
+vnoremap H ^
+vnoremap L $
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 
