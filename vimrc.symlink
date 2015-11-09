@@ -116,6 +116,7 @@ hi Visual ctermfg=LightGreen
 "set list
 "set listchars=tab:\ \ ,trail:.
 
+
 " 5. Mappings ------------------------------------------------------------ {{{1
 
 " 5.1. Normal Mode ------------------------------------------------------- {{{2
@@ -194,7 +195,6 @@ inoremap kj <esc>
 
 " Navigate right without arrows
 inoremap <c-l> <right>
-
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 "

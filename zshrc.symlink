@@ -44,12 +44,35 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 source $ZSH/oh-my-zsh.sh
 
 
-# 2. PATH ---------------------------------------------------------------- {{{1
+# 2. Keybindings --------------------------------------------------------- {{{1
+
+# Enable vim-mode
+bindkey -v
+
+# Vimrc compliance
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins 'kj' vi-cmd-mode
+
+bindkey -M vicmd 'H' beginning-of-line
+bindkey -M vicmd 'L' end-of-line
+
+bindkey -M viins '^L' forward-char
+
+# Navigate history
+bindkey '^J' down-history
+bindkey '^K' up-history
+
+# Search shell history
+bindkey '^U' history-incremental-search-backward
+
+
+# 3. Path ---------------------------------------------------------------- {{{1
+
 # Add personal scripts to path
 export PATH="$HOME/Scripts:$PATH"
 
 
-# 3. Exports ------------------------------------------------------------- {{{1
+# 4. Exports ------------------------------------------------------------- {{{1
 
 export MYVIMRC=~/.vimrc
 
@@ -59,7 +82,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source $VIRTUALENVWRAPPER_SCRIPT
 
-# 4. Aliases ------------------------------------------------------------- {{{1
+# 5. Aliases ------------------------------------------------------------- {{{1
 
 alias ll='ls -alF'
 alias la='la -A'
@@ -79,13 +102,13 @@ alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
 alias nopyc='rm *.pyc'
 
-# 5. Functions ----------------------------------------------------------- {{{1
+# 6. Functions ----------------------------------------------------------- {{{1
 
 function trackp() {
 	echo $1 >> ~/.pkgs
 }
 
 
-# 6. Misc ---------------------------------------------------------------- {{{1
+# 7. Misc ---------------------------------------------------------------- {{{1
 
 stty stop undef
