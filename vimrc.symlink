@@ -247,6 +247,7 @@ let g:airline_symbols.linenr = ''
 
 " CtrlP
 let g:ctrlp_map = '<c-f>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " DelimitMate
 let delimitMate_expand_cr = 1
