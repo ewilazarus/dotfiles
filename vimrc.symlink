@@ -48,6 +48,7 @@ Plugin 'mhinz/vim-sayonara'
 call vundle#end()
 filetype plugin indent on
 
+
 " 2. Leader Key ---------------------------------------------------------- {{{1
 
 let mapleader = "\<space>"
@@ -83,12 +84,12 @@ set smartcase
 set hlsearch
 set incsearch
 
-" Keep search matches in the middle of the screen
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" Turns hlsearch on and keep search matches in the middle of the screen
+nnoremap n :set hlsearch<cr>nzzzv
+nnoremap N :set hlsearch<cr>Nzzzv
 
 " Don't move on *
-nnoremap * *<c-o>
+nnoremap * :set hlsearch<cr>*<c-o>
 
 
 " 4. Appearence ---------------------------------------------------------- {{{1
@@ -115,8 +116,8 @@ hi CursorLineNr ctermfg=DarkGray
 hi Visual ctermfg=LightGreen
 
 " Display '.' for trailing whitespace
-"set list
-"set listchars=tab:\ \ ,trail:.
+set list
+set listchars=tab:\ \ ,trail:.
 
 
 " 5. Mappings ------------------------------------------------------------ {{{1
@@ -186,8 +187,12 @@ nnoremap <leader><leader>q :q!<cr>
 nnoremap <c-g> `[v`]
 
 " Toggles 'transparent' mode
-nnoremap <silent><up> :hi normal ctermbg=233<cr>:hi nontext ctermbg=233<cr>
-nnoremap <silent><down> :hi normal ctermbg=none<cr>:hi nontext ctermbg=none<cr>
+nnoremap <silent><up> :set list<cr>:hi normal ctermbg=233<cr>:hi nontext ctermbg=233<cr>
+nnoremap <silent><down> :set nolist<cr>:hi normal ctermbg=none<cr>:hi nontext ctermbg=none<cr>
+
+" Quick search and replace
+nnoremap <silent>m :set hlsearch<cr>/
+nnoremap <silent>, :set hlsearch<cr>:%s/
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -199,7 +204,7 @@ inoremap kj <esc>
 inoremap <c-l> <right>
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
-"
+
 " Make 'space' leave visual mode
 vnoremap <leader> <esc>
 
@@ -215,14 +220,35 @@ vnoremap L $
 vnoremap <c-d> <c-u>
 vnoremap <c-s> <c-d>
 
+" Quick replace
+vnoremap , :s/
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
+
+" Make 'jk' and 'kj' leave insert mode
+cnoremap jk <c-u><bs>
+cnoremap kj <c-u><bs>
+
+" Navigate history
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+
+" Easier '/'
+cnoremap \ /
+cnoremap / \
 
 " Tweak .vimrc
 command! Vimrc :next $MYVIMRC<cr>
 
 
 " 6. Autocommands -------------------------------------------------------- {{{1
+
+" Remove highlightseatch when moving cursor
+augroup SmartHighlight
+	autocmd!
+	autocmd InsertEnter * set nohlsearch
+	autocmd BufWritePost * set nohlsearch
+augroup END
 
 " Remember last opened line
 augroup RessurrectLine
@@ -237,7 +263,12 @@ augroup VimReload
 augroup END
 
 
-" 7. Plugin Customization ------------------------------------------------ {{{1
+" 7. Functions ----------------------------------------------------------- {{{1
+
+" EMPTY
+
+
+" 8. Plugin Customization ------------------------------------------------ {{{1
 
 " Airline
 if !exists('g:airline_symbols')
