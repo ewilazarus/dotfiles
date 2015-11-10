@@ -209,6 +209,11 @@ vnoremap > >gv
 vnoremap H ^
 vnoremap L $
 
+" Make ctrl-d pageup, ctrl-s pagedown
+vnoremap <c-d> <c-u>
+vnoremap <c-s> <c-d>
+
+
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 
 " Tweak .vimrc
