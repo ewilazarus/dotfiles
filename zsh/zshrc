@@ -109,4 +109,5 @@ alias nopyc='rm *.pyc'
 
 # 7. Misc ---------------------------------------------------------------- {{{1
 
+# Make <c-s> available for vim
 stty stop undef
