@@ -7,6 +7,7 @@ build-essential
 automake
 
 # Development tools
+vim
 ack-grep
 exuberant-ctags
 

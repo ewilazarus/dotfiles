@@ -53,12 +53,6 @@ cd $DFDIR
 
 
 # Install packages defined in "$HOME/.dotfiles/etc/packages"
-echo "updating package manager"
-apt-get update > /dev/null
-
-echo "upgrading package manager"
-apt-get upgrade > /dev/null
-
 while read package; do
 	if [[ $package != \#* && ! -z $package ]] ; then
 		echo "installing package: $package"
