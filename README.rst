@@ -6,7 +6,7 @@ My personal selection of dotfiles.
 Instructions
 ------------
 
-Run the following commands:
+To bootstrap these configurations, run the following commands:
 
 
 .. code-block:: shell
