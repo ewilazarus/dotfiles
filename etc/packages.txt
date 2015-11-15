@@ -1,0 +1,26 @@
+# Shell
+zsh
+tmux
+
+# Build tools
+build-essential
+automake
+
+# Development tools
+ack-grep
+exuberant-ctags
+
+# REPLs
+python3
+octave
+
+# GUI applications
+recordmydesktop
+gimp
+vlc
+
+# Misc
+irssi
+tree
+cloc
+htop
