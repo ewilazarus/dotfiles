@@ -194,6 +194,12 @@ nnoremap <silent><down> :set nolist<cr>:hi normal ctermbg=none<cr>:hi nontext ct
 nnoremap <silent>m :set hlsearch<cr>/
 nnoremap <silent>, :set hlsearch<cr>:%s/
 
+" Documentation
+nnoremap ? K
+
+" Split line
+nnoremap K i<cr><esc>
+
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode

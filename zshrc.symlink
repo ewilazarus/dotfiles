@@ -84,7 +84,7 @@ source $VIRTUALENVWRAPPER_SCRIPT
 
 # 5. Aliases ------------------------------------------------------------- {{{1
 
-alias ll='ls -alF'
+alias ll='ls -alhF'
 alias la='la -A'
 alias l='ls -CF'
 
