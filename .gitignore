@@ -1,9 +1,9 @@
 # VIM
-vim/vim/bundle/
+vim/vim/bundle/*
 !vim/vim/bundle/Vundle.vim
 !vim/vim/bundle/Vundle.vim/*
 
 # TMUX
-tmux/tmux/plugins/
+tmux/tmux/plugins/*
 !tmux/tmux/plugins/tpm
 !tmux/tmux/plugins/tpm/*
