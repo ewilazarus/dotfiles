@@ -82,6 +82,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source $VIRTUALENVWRAPPER_SCRIPT
 
+
 # 5. Aliases ------------------------------------------------------------- {{{1
 
 alias ll='ls -alhF --group-directories-first'
@@ -101,6 +102,7 @@ alias et='vim ~/.tmux.conf'
 alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
 alias nopyc='rm *.pyc'
+
 
 # 6. Functions ----------------------------------------------------------- {{{1
 
