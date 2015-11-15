@@ -26,8 +26,7 @@ OLDDFDIR=$HOME/.old_dotfiles
 PACKAGES=$DFDIR/etc/packages.txt
 TMPDIR=$DFDIR/tmp
 
-GETPIP=get-pip.py
-GETPIPURL=http://bootstrap.pypa.io/$GETPIP
+GETPIP=http://bootstrap.pypa.io/$GETPIP
 
 ###############################################################################
 
@@ -89,9 +88,7 @@ echo "installing tmux plugins"
 
 
 echo "installing pip"
-curl -sO $GETPIPURL
-python $GETPIP
-rm $GETPIP
+curl -s $GETPIP | python /dev/stdin
 
 
 echo "installing virtualenv and virtualenvwrapper"
