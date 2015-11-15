@@ -65,6 +65,7 @@ homelink conky/conkyrc .conkyrc
 homelink conky/conkystart .conkystart
 homelink git/gitconfig .gitconfig
 homelink irssi .irssi
+homelink scripts Scripts
 homelink tmux/tmux .tmux
 homelink tmux/tmux.conf .tmux.conf
 homelink vim/vim .vim
