@@ -51,7 +51,7 @@ git clone $REMOTE $LOCAL --recursive
 cd $LOCAL
 
 
-# Install packages defined in "$HOME/.dotfiles/etc/packages"
+# Install packages defined in "$HOME/.dotfiles/etc/packages.txt"
 while read package; do
 	if [[ $package != \#* && ! -z $package ]] ; then
 		echo "installing package: $package"
