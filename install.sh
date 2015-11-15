@@ -111,6 +111,7 @@ chsh -s /bin/zsh $(logname)
 echo "grating permission to $DFDIR without admin rights"
 chown -R $(logname) $DFDIR
 
+
 echo "done"
 echo "rebooting the machine in 10s ..."
 sleep 10
