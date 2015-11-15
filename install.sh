@@ -20,20 +20,20 @@
 
 ################################# VARIABLES ###################################
 
-DFDIR=$HOME/.dotfiles
-OLDDFDIR=$HOME/.old_dotfiles
-
-PACKAGES=$DFDIR/etc/packages.txt
-TMPDIR=$DFDIR/tmp
-
-GETPIP=http://bootstrap.pypa.io/$GETPIP
+REMOTE=git@github.com:ewilazarus/dotfiles.git
+LOCAL=$HOME/.dotfiles
+BACKUP=$HOME/.dotfiles_bak
+PACKAGES=$LOCAL/etc/packages.txt
+TMPDIR=$LOCAL/tmp
+PWRLINE=git@github.com:powerline/fonts.git
+GETPIP=http://bootstrap.pypa.io/get-pip.py
 
 ###############################################################################
 
 ################################# FUNCTIONS ###################################
 
 function homelink {
-	ln -s $DFDIR/$1 $HOME/$2
+	ln -s $LOCAL/$1 $HOME/$2
 }
 
 ###############################################################################
@@ -41,14 +41,14 @@ function homelink {
 echo "bootstraping configurations"
 
 # Clone the repository and backs up old dotfiles dir to "$HOME/.old_dotfiles"
-if [ -d "$DFDIR" ]; then
-	echo "creating a backup of old $DFDIR in $OLDDFDIR"
-	mv $DFDIR $OLDDFDIR
+if [ -d "$LOCAL" ]; then
+	echo "creating a backup of old $LOCAL in $BACKUP"
+	mv $LOCAL $BACKUP
 fi
 
-echo "cloning git@github.com:ewilazarus/dotfiles.git into $DFDIR"
-git clone --recursive git@github.com:ewilazarus/dotfiles.git $DFDIR
-cd $DFDIR
+echo "cloning $REMOTE into $LOCAL"
+git clone --recursive $REMOTE $LOCAL
+cd $LOCAL
 
 
 # Install packages defined in "$HOME/.dotfiles/etc/packages"
@@ -74,9 +74,9 @@ homelink zsh/zshrc .zshrc
 
 
 echo "installing powerline fonts"
-git clone git@github.com:powerline/fonts.git $TMPDIR
+git clone $PWRLINE $TMPDIR
 cd $TMPDIR && ./install.sh > /dev/null
-cd $DFDIR && rm -rf $TMPDIR
+cd $LOCAL && rm -rf $TMPDIR
 
 
 echo "installing vim plugins"
@@ -99,8 +99,8 @@ echo "switching to zshell"
 chsh -s /bin/zsh $(logname)
 
 
-echo "grating permission to $DFDIR without admin rights"
-chown -R $(logname) $DFDIR
+echo "grating permission to $LOCAL without admin rights"
+chown -R $(logname) $LOCAL
 
 
 echo "done"
