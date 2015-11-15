@@ -1,11 +1,9 @@
 # VIM
-vim.symlink/
-!vim.symlink/bundle/Vundle.vim
-!vim.symlink/bundle/Vundle.vim/*
-!vim.symlink/bundle/my-snippets
-!vim.symlink/bundle/my-snippets/*
+vim/vim/bundle/
+!vim/vim/bundle/Vundle.vim
+!vim/vim/bundle/Vundle.vim/*
 
 # TMUX
-tmux.symlink/
-!tmux.symlink/plugins/tpm
-!tmux.symlink/plugins/tpm/*
+tmux/tmux/plugins/
+!tmux/tmux/plugins/tpm
+!tmux/tmux/plugins/tpm/*

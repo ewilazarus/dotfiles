@@ -1,9 +1,9 @@
-[submodule "vim.symlink/bundle/Vundle.vim"]
-	path = vim.symlink/bundle/Vundle.vim
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
 	url = git@github.com:gmarik/Vundle.vim.git
-[submodule "tmux.symlink/plugins/tpm"]
-	path = tmux.symlink/plugins/tpm
+[submodule "tmuxplugins/tpm"]
+	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
-[submodule "oh-my-zsh.symlink"]
-	path = oh-my-zsh.symlink
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
