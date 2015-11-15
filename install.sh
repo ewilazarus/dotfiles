@@ -47,7 +47,7 @@ if [ -d "$LOCAL" ]; then
 fi
 
 echo "cloning $REMOTE into $LOCAL"
-git clone --recursive $REMOTE $LOCAL
+git clone $REMOTE $LOCAL --recursive
 cd $LOCAL
 
 
