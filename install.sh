@@ -64,12 +64,12 @@ echo "creating symbolic links in $HOME"
 homelink conky/conkyrc .conkyrc
 homelink conky/conkystart .conkystart
 homelink git/gitconfig .gitconfig
-homelink irssi/ .irssi
-homelink tmux/tmux/ .tmux
+homelink irssi .irssi
+homelink tmux/tmux .tmux
 homelink tmux/tmux.conf .tmux.conf
-homelink vim/vim/ .vim
+homelink vim/vim .vim
 homelink vim/vimrc .vimrc
-homelink zsh/oh-my-zsh/ .oh-my-zsh
+homelink zsh/oh-my-zsh .oh-my-zsh
 homelink zsh/zshrc .zshrc
 
 
