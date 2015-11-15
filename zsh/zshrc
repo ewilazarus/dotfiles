@@ -84,9 +84,9 @@ source $VIRTUALENVWRAPPER_SCRIPT
 
 # 5. Aliases ------------------------------------------------------------- {{{1
 
-alias ll='ls -alhF'
-alias la='la -A'
-alias l='ls -CF'
+alias ll='ls -alhF --group-directories-first'
+alias la='la -A --group-directories-first'
+alias l='ls -CF --group-directories-first'
 
 alias dreamh='ssh ewilazarus@lintilla.dreamhost.com'
 alias tfak='ssh limag@login.informatik.uni-freiburg.de'
