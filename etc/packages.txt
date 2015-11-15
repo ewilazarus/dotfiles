@@ -1,5 +1,8 @@
 # vim: syntax=python
 
+# Packages to be installed automatically by ~/.dotfiles/install.sh
+
+
 # Shell
 zsh
 tmux
