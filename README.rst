@@ -1,7 +1,7 @@
-Dotfiles
+dotfiles/
 ========
 
-My personal selection of dotfiles.
+Gabriel Lima's personal selection of dotfiles.
 
 Instructions
 ------------
