@@ -62,7 +62,7 @@ apt-get upgrade > /dev/null
 while read package; do
 	if [[ $package != \#* && ! -z $package ]] ; then
 		echo "installing package: $package"
-		apt-get install -y $package > /dev/null
+		apt-get install $package -y > /dev/null
 	fi
 done < $PACKAGES
 
