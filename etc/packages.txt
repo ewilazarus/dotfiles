@@ -26,6 +26,7 @@ gimp
 vlc
 
 # Misc
+texlive
 irssi
 tree
 cloc

@@ -98,6 +98,7 @@ alias ack='ack-grep'
 alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias et='vim ~/.tmux.conf'
+alias ep='vim ~/.dotfiles/etc/packages.txt'
 
 alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
