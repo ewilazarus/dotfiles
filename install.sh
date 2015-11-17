@@ -22,12 +22,16 @@
 ################################# VARIABLES ###################################
 
 REMOTE=git@github.com:ewilazarus/dotfiles.git
-LOCAL=$HOME/.dotfiles
-BACKUP=$HOME/.dotfiles_bak
-PACKAGES=$LOCAL/etc/packages.txt
-TMPDIR=$LOCAL/tmp
 PWRLINE=git@github.com:powerline/fonts.git
 GETPIP=http://bootstrap.pypa.io/get-pip.py
+
+LOCAL=$HOME/.dotfiles
+BACKUP=$HOME/.dotfiles_bak
+TMPDIR=$LOCAL/tmp
+
+PACKAGESAPT=$LOCAL/etc/packages.txt
+PACKAGESPIP2=$LOCAL/etc/requirements2.txt
+PACKAGESPIP3=$LOCAL/etc/requirements3.txt
 
 ###############################################################################
 
@@ -58,7 +62,24 @@ while read package; do
 		echo "installing package: $package"
 		apt-get install $package -y > /dev/null
 	fi
-done < $PACKAGES
+done < $PACKAGESAPT
+
+
+echo "installing: pip"
+curl -s $GETPIP | python /dev/stdin
+#curl -s $GETPIP | python3 /dev/stdin
+
+# Install pip packages defined in "$HOME/.dotfiles/etc/requirements*.txt"
+pip install -r $PACKAGESPIP2 > /dev/null
+#pip3.4 install -r $PACKAGESPIP3 > /dev/null
+
+
+echo "installing: powerline-fonts"
+git clone $PWRLINE $TMPDIR
+cd $TMPDIR && ./install.sh > /dev/null
+cd $LOCAL && rm -rf $TMPDIR
+
+
 
 
 echo "creating symbolic links in $HOME"
@@ -75,22 +96,12 @@ homelink zsh/oh-my-zsh .oh-my-zsh
 homelink zsh/zshrc .zshrc
 
 
-echo "installing powerline fonts"
-git clone $PWRLINE $TMPDIR
-cd $TMPDIR && ./install.sh > /dev/null
-cd $LOCAL && rm -rf $TMPDIR
-
-
 echo "installing vim plugins"
 vim -c PluginInstall -c quitall
 
 
 echo "installing tmux plugins"
 # TODO
-
-
-echo "installing pip"
-curl -s $GETPIP | python /dev/stdin
 
 
 echo "installing virtualenv and virtualenvwrapper"
