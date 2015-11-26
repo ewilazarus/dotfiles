@@ -22,7 +22,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'bkad/CamelCaseMotion'
 Plugin 'bling/vim-airline'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
@@ -65,8 +64,9 @@ set noswapfile
 set foldlevel=99
 set clipboard=unnamedplus
 set mouse=a
-set scrolloff=8
+set scrolloff=10
 set spelllang=en_us
+set visualbell
 
 " Suppress 'ex-mode'
 nnoremap Q <nop>
@@ -173,8 +173,8 @@ nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
 " Make ctrl-d pageup, ctrl-s pagedown
-nnoremap <c-d> <c-u>
-nnoremap <c-s> <c-d>
+nnoremap <c-d> 10k
+nnoremap <c-s> 10j
 
 " Navigation between definition and usage
 nnoremap <c-r> <c-]>
@@ -223,12 +223,14 @@ nnoremap <F9> :redraw!<cr>
 inoremap jk <esc>
 inoremap kj <esc>
 
-" Navigate right without arrows
-inoremap <c-l> <right>
-
 " Better pasting in insert mode
 inoremap <F4> <c-r>"
 inoremap <F5> <c-r>*
+
+" Navigate in insert mode
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 
@@ -270,40 +272,44 @@ command! Vimrc :next $MYVIMRC<cr>
 
 " 6. Autocommands -------------------------------------------------------- {{{1
 
+augroup RessurrectLine  " {{{
 " Remember last opened line
-augroup RessurrectLine
 	autocmd!
   	autocmd BufReadPost *
   		\ if line("'\"") > 0 && line("'\"") <= line("$") |
   		\ exe "normal! g'\"" | 
 		\ endif
 augroup END
+" }}}
 
+augroup VimReload  " {{{
 " Source .vimrc when save
-augroup VimReload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
 augroup END
+" }}}
 
+augroup CursorLine  " {{{
 " Don't show cursorline in insert mode
-augroup CursorLine
     au!
     au WinLeave,InsertEnter * set nocursorline
     au WinEnter,InsertLeave * set cursorline
 augroup END
+" }}}
 
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
-function! ToggleLineNumber()
+function! ToggleLineNumber()  " {{{
 	if(&relativenumber == 1)
 		setlocal norelativenumber
 	else
 		setlocal relativenumber
 	endif
 endfunc
+" }}}
 
-function! ToggleBackground()
+function! ToggleBackground()  " {{{
 	if(&list == 1)
 		set nolist
 		hi normal ctermbg=none
@@ -314,11 +320,12 @@ function! ToggleBackground()
 		hi nontext ctermbg=233
 	endif
 endfunc
+" }}}
 
 
 " 8. Plugin Customization ------------------------------------------------ {{{1
 
-" Airline
+" Airline {{{
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -330,66 +337,63 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+" }}}
 
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
-
-" CtrlP
+" CtrlP {{{
 let g:ctrlp_map = '<c-f>'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
+" }}}
 
-" DelimitMate
+" DelimitMate {{{
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
+" }}}
 
-" GUndo
+" GUndo {{{
 nnoremap <c-u> :GundoToggle<cr>
+" }}}
 
-" NERDCommenter
+" NERDCommenter {{{
 map <silent>-- <plug>NERDCommenterToggle
+" }}}
 
-" NERDTree
+" NERDTree {{{
 nnoremap <silent><c-n> :NERDTreeToggle<cr>
+" }}}
 
-" UltiSnips
+" UltiSnips {{{
 let g:UltiSnipsExpandTrigger = '<c-x>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+" }}}
 
-" Rainbow-Parentheses
+" Rainbow-Parentheses {{{
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+" }}}
 
-" Sayonara
+" Sayonara {{{
 nnoremap <leader>q :Sayonara<cr>
+" }}}
 
-" Snnm
+" Snnm {{{
 let g:snnmapp = '/usr/local/bin/snnm'
+" }}}
 
-" Syntastic
+" Syntastic {{{
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+" }}}
 
-" Tagbar
+" Tagbar {{{
 nnoremap <silent><c-g> :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
+" }}}
 
-" YouCompleteMe
+" YouCompleteMe {{{
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion=['<c-j>', '<down>']
 let g:ycm_key_list_previous_completion=['<c-k>', '<up>']
+" }}}
