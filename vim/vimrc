@@ -8,6 +8,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 " copyright: (c) 2015 gabriel lima
+" 
 " license: MIT
 "
 
@@ -159,10 +160,10 @@ nnoremap H ^
 nnoremap L $
 
 " Nohlsearch
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent><leader><leader> :noh<cr>
 
 " Toggle paste mode
-nnoremap <silent> <c-p> :set invpaste<cr>:set paste?<cr>
+nnoremap <silent><F6> :set invpaste<cr>:set paste?<cr>
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -182,6 +183,9 @@ nnoremap <c-e> <c-T>
 " Save file
 nnoremap <leader>w :w<cr>
 
+" Save file (sudo)
+nnoremap <leader><leader>w :w !sudo tee % >/dev/null<cr>
+
 " Force quit
 nnoremap <leader><leader>q :q!<cr>
 
@@ -192,8 +196,8 @@ nnoremap <c-y> `[v`]
 nnoremap <silent><up> :call ToggleBackground()<cr>
 
 " Quick search and replace
-nnoremap , /
-nnoremap : :%s/
+nnoremap , /\v
+nnoremap : :%s//
 
 " Documentation
 nnoremap ? K
@@ -209,6 +213,9 @@ nnoremap <silent>´ :call ToggleLineNumber()<cr>
 
 " Toggles spelling
 nnoremap <silent><down> :set spell!<cr>
+
+" Redraw!
+nnoremap <F9> :redraw!<cr>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 

@@ -115,6 +115,9 @@ chsh -s /bin/zsh $(logname)
 echo "grating permission to $LOCAL without admin rights"
 chown -R $(logname) $LOCAL
 
+echo "Remapping Caps Lock to Ctrl"
+mv /etc/default/keyboard /etc/default/keyboard_bak
+cp $LOCAL/etc/keyboard /etc/default/
 
 echo "done"
 echo "rebooting the machine in 10s ..."
