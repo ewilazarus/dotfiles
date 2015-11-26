@@ -7,7 +7,7 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 "
-" copyright: (c) 2015 Gabriel Lima
+" copyright: (c) 2015 gabriel lima
 " license: MIT
 "
 
@@ -65,8 +65,9 @@ set foldlevel=99
 set clipboard=unnamedplus
 set mouse=a
 set scrolloff=8
+set spelllang=en_us
 
-" Supress 'ex-mode'
+" Suppress 'ex-mode'
 nnoremap Q <nop>
 
 " 3.1. Tab Preferences --------------------------------------------------- {{{2
@@ -93,7 +94,7 @@ nnoremap N :set hlsearch<cr>Nzzzv
 nnoremap * :set hlsearch<cr>*<c-o>
 
 
-" 4. Appearence ---------------------------------------------------------- {{{1
+" 4. Appearance ---------------------------------------------------------- {{{1
 
 syntax on
 colorscheme jellybeans
@@ -106,7 +107,7 @@ set laststatus=2
 set number
 set relativenumber
 
-" Show colum #80
+" Show column #80
 set colorcolumn=80
 
 " Show highlighted current line
@@ -138,7 +139,7 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Swaping lines
+" Swapping lines
 nnoremap \j ddp
 nnoremap \k ddkP
 
@@ -184,7 +185,7 @@ nnoremap <leader>w :w<cr>
 " Force quit
 nnoremap <leader><leader>q :q!<cr>
 
-" Select last modifyed text
+" Select last modified text
 nnoremap <c-y> `[v`]
 
 " Toggles 'transparent' mode
@@ -206,6 +207,9 @@ nnoremap ' `
 " Toggles between relative and absolute line numbers
 nnoremap <silent>´ :call ToggleLineNumber()<cr>
 
+" Toggles spelling
+nnoremap <silent><down> :set spell!<cr>
+
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode
@@ -214,6 +218,10 @@ inoremap kj <esc>
 
 " Navigate right without arrows
 inoremap <c-l> <right>
+
+" Better pasting in insert mode
+inoremap <F4> <c-r>"
+inoremap <F5> <c-r>*
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 
@@ -237,7 +245,7 @@ vnoremap , :s/
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 
-" Make 'jk' and 'kj' leave insert mode
+" Make 'jk' and 'kj' leave command mode
 cnoremap jk <c-u><bs>
 cnoremap kj <c-u><bs>
 
@@ -258,7 +266,10 @@ command! Vimrc :next $MYVIMRC<cr>
 " Remember last opened line
 augroup RessurrectLine
 	autocmd!
-  	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  	autocmd BufReadPost *
+  		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+  		\ exe "normal! g'\"" | 
+		\ endif
 augroup END
 
 " Source .vimrc when save
@@ -267,16 +278,21 @@ augroup VimReload
 	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
 augroup END
 
+" Don't show cursorline in insert mode
+augroup CursorLine
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
+
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
 function! ToggleLineNumber()
 	if(&relativenumber == 1)
-		set number
-		set norelativenumber
+		setlocal norelativenumber
 	else
-		set number
-		set relativenumber
+		setlocal relativenumber
 	endif
 endfunc
 
@@ -363,7 +379,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 " Tagbar
-nnoremap <silent><c-b> :TagbarToggle<cr>
+nnoremap <silent><c-g> :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
 
 " YouCompleteMe
