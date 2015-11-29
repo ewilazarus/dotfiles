@@ -42,7 +42,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/repmo.vim'
 
 call vundle#end()
 filetype plugin indent on
