@@ -8,7 +8,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 " copyright: (c) 2015 gabriel lima
-" 
+"
 " license: MIT
 "
 
@@ -98,7 +98,8 @@ nnoremap * :set hlsearch<cr>*<c-o>
 " 4. Appearance ---------------------------------------------------------- {{{1
 
 syntax on
-colorscheme jellybeans
+colorscheme luna-term
+"colorscheme jellybeans
 "colorscheme badwolf
 
 " Statusline
@@ -110,13 +111,6 @@ set relativenumber
 
 " Show column #80
 set colorcolumn=80
-
-" Show highlighted current line
-set cursorline
-hi CursorLineNr ctermfg=DarkGray
-
-" Show highlighted selection
-hi Visual ctermfg=LightGreen
 
 " Display '.' for trailing whitespace
 set list
@@ -310,14 +304,10 @@ endfunc
 " }}}
 
 function! ToggleBackground()  " {{{
-	if(&list == 1)
-		set nolist
-		hi normal ctermbg=none
-		hi nontext ctermbg=none
+	if(g:colors_name == "sol")
+		colorscheme luna-term
 	else
-		set list
-		hi normal ctermbg=233
-		hi nontext ctermbg=233
+		colorscheme sol-term
 	endif
 endfunc
 " }}}
