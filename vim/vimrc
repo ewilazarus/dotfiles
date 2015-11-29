@@ -34,7 +34,6 @@ Plugin 'mhinz/vim-sayonara'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'reedes/vim-pencil'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
@@ -209,10 +208,14 @@ nnoremap <silent>´ :call ToggleLineNumber()<cr>
 nnoremap <silent><down> :call ToggleSpellCheck()<cr>
 
 " Redraw!
-nnoremap <F9> :redraw!<cr>
+nnoremap <F1> :redraw!<cr>
 
 " File format
-nnoremap <F1> ggVGqg
+nnoremap == ggVG=
+
+" 'Fix' jumplist
+nnoremap <c-o> <c-i>
+nnoremap <c-i> <c-o>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -259,10 +262,6 @@ cnoremap kj <c-u><bs>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
-" Easier '/'
-cnoremap \ /
-cnoremap / \
-
 " Tweak .vimrc
 command! Vimrc :next $MYVIMRC<cr>
 
@@ -270,30 +269,36 @@ command! Vimrc :next $MYVIMRC<cr>
 " 6. Autocommands -------------------------------------------------------- {{{1
 
 augroup RessurrectLine  " {{{
-" Remember last opened line
+	" Remember last opened line
 	autocmd!
-  	autocmd BufReadPost *
-  		\ if line("'\"") > 0 && line("'\"") <= line("$") |
-  		\ exe "normal! g'\"" | 
-		\ endif
+	autocmd BufReadPost *
+				\ if line("'\"") > 0 && line("'\"") <= line("$") |
+				\ exe "normal! g'\"" | 
+				\ endif
 augroup END
 " }}}
 
 augroup VimReload  " {{{
-" Source .vimrc when save
+	" Source .vimrc when save
 	autocmd!
 	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
 augroup END
 " }}}
 
 augroup CursorLine  " {{{
-" Don't show cursorline in insert mode
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
+	" Don't show cursorline in insert mode
+	au!
+	au WinLeave,InsertEnter * set nocursorline
+	au WinEnter,InsertLeave * set cursorline
 augroup END
 " }}}
 
+augroup SmartJump  " {{{
+	" Automatically adds position to jumplist
+	au!
+	au CursorHold * normal! m'
+augroup END
+" }}}
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
@@ -333,7 +338,7 @@ endfunc
 
 " Airline {{{
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = ''
@@ -365,16 +370,6 @@ map <silent>-- <plug>NERDCommenterToggle
 
 " NERDTree {{{
 nnoremap <silent><c-n> :NERDTreeToggle<cr>
-" }}}
-
-" Pencil {{{
-augroup pencil
-	autocmd!
-	autocmd FileType text,txt call pencil#init()
-	autocmd FileType rst call pencil#init()
-	autocmd FileType markdown,md call pencil#init()
-	autocmd FileType tex call pencil#init()
-augroup END
 " }}}
 
 " UltiSnips {{{
