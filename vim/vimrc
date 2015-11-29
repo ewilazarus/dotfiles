@@ -98,8 +98,7 @@ nnoremap * :set hlsearch<cr>*<c-o>
 " 4. Appearance ---------------------------------------------------------- {{{1
 
 syntax on
-colorscheme luna-term
-"colorscheme jellybeans
+colorscheme jellybeans
 "colorscheme badwolf
 
 " Statusline
@@ -206,7 +205,7 @@ nnoremap ' `
 nnoremap <silent>´ :call ToggleLineNumber()<cr>
 
 " Toggles spelling
-nnoremap <silent><down> :set spell!<cr>
+nnoremap <silent><down> :call ToggleSpellCheck()<cr>
 
 " Redraw!
 nnoremap <F9> :redraw!<cr>
@@ -305,13 +304,26 @@ endfunc
 
 function! ToggleBackground()  " {{{
 	if(g:colors_name == "sol")
-		colorscheme luna-term
+		colorscheme jellybeans
 	else
 		colorscheme sol-term
 	endif
 endfunc
 " }}}
 
+function! ToggleSpellCheck()
+	set spell!	
+
+	if(&spell == 1)
+		nnoremap <silent><left> [s
+		nnoremap <silent><right> ]s
+		nnoremap <silent><up> z=
+	else
+		nnoremap <silent><left> :bprev<cr>k
+		nnoremap <silent><right> :bnext<cr>
+		nnoremap <silent><up> :call ToggleBackground()<cr>
+	endif
+endfunc
 
 " 8. Plugin Customization ------------------------------------------------ {{{1
 
