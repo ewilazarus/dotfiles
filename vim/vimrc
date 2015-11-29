@@ -34,6 +34,7 @@ Plugin 'mhinz/vim-sayonara'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'reedes/vim-pencil'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
@@ -210,6 +211,9 @@ nnoremap <silent><down> :call ToggleSpellCheck()<cr>
 " Redraw!
 nnoremap <F9> :redraw!<cr>
 
+" File format
+nnoremap <F1> ggVGqg
+
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode
@@ -361,6 +365,16 @@ map <silent>-- <plug>NERDCommenterToggle
 
 " NERDTree {{{
 nnoremap <silent><c-n> :NERDTreeToggle<cr>
+" }}}
+
+" Pencil {{{
+augroup pencil
+	autocmd!
+	autocmd FileType text,txt call pencil#init()
+	autocmd FileType rst call pencil#init()
+	autocmd FileType markdown,md call pencil#init()
+	autocmd FileType tex call pencil#init()
+augroup END
 " }}}
 
 " UltiSnips {{{
