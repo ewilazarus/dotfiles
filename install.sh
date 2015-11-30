@@ -11,7 +11,7 @@
 #
 # Installation script for a linux development machine basic configuration.
 # 
-# source:	https://github.com/ewilazarus/dotfiles/install.sh
+# source:	https://github.com/ewilazarus/dotfiles/blob/master/install.sh
 #
 # prereq:	- admin rights
 #			- git (version 1.9.1 or greater)
