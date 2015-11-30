@@ -161,6 +161,10 @@ nnoremap Y y$
 nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
+" Cycle through buffers
+nnoremap t<left> :tabp<cr>
+nnoremap t<right> :tabn<cr>
+
 " Make ctrl-d pageup, ctrl-s pagedown
 nnoremap <c-d> <c-b>
 nnoremap <c-s> <c-f>
