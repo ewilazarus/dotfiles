@@ -22,26 +22,39 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'honza/vim-snippets'
+Plugin 'justinmk/vim-gtfo'
 Plugin 'kien/ctrlp.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mhinz/vim-sayonara'
 Plugin 'mileszs/ack.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-unimpaired'
+
+" Customized text objects
+Plugin 'glts/vim-textobj-comment'
+Plugin 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-fold'
+Plugin 'kana/vim-textobj-function'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-user'
+Plugin 'reedes/vim-textobj-quote'
+Plugin 'reedes/vim-textobj-sentence'
 
 call vundle#end()
 filetype plugin indent on
@@ -97,7 +110,6 @@ nnoremap * :set hlsearch<cr>*<c-o>
 
 syntax on
 colorscheme jellybeans
-"colorscheme badwolf
 
 " Statusline
 set laststatus=2
@@ -128,14 +140,6 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Swapping lines
-nnoremap \j ddp
-nnoremap \k ddkP
-
-" Add blank lines before or after
-nnoremap <bar>j o<esc>k
-nnoremap <bar>k O<esc>j
-
 " Move through wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -148,30 +152,12 @@ nnoremap gH 0
 nnoremap H ^
 nnoremap L $
 
-" Nohlsearch
-nnoremap <silent>\\ :noh<cr>
-
-" Toggle paste mode
-nnoremap <silent><F6> :set invpaste<cr>:set paste?<cr>
-
 " Make Y behave like other capitals
 nnoremap Y y$
-
-" Cycle through buffers
-nnoremap <left> :bprev<cr>
-nnoremap <right> :bnext<cr>
-
-" Cycle through buffers
-nnoremap t<left> :tabp<cr>
-nnoremap t<right> :tabn<cr>
 
 " Make ctrl-d pageup, ctrl-s pagedown
 nnoremap <c-d> <c-b>
 nnoremap <c-s> <c-f>
-
-" Navigation between definition and usage
-nnoremap <c-r> <c-]>
-nnoremap <c-e> <c-T>
 
 " Save file
 nnoremap <leader>w :w<cr>
@@ -183,10 +169,7 @@ nnoremap <leader><leader>w :w !sudo tee % >/dev/null<cr>
 nnoremap <leader><leader>q :q!<cr>
 
 " Select last modified text
-nnoremap <c-y> `[v`]
-
-" Toggles 'transparent' mode
-nnoremap <silent><up> :call ToggleBackground()<cr>
+nnoremap gV `[v`]
 
 " Quick search and replace
 nnoremap <c-a>a /\v
@@ -201,24 +184,29 @@ nnoremap K i<cr><esc>
 " Make jumping more comfortable in ABNT2 keyboard
 nnoremap ' `
 
-" Toggles between relative and absolute line numbers
-nnoremap <silent>´ :call ToggleLineNumber()<cr>
-
-" Toggles spelling
-nnoremap <silent><down> :call ToggleSpellCheck()<cr>
-
 " Redraw!
-nnoremap <F1> :redraw!<cr>
-
-" File format
-nnoremap == ggVG=
-
-" 'Fix' jumplist
-nnoremap <c-o> g,
-nnoremap <c-i> g;
+nnoremap <F5> :redraw!<cr>
 
 " Increment number
 nnoremap <c-c> <c-a>
+
+" Better macro trigger
+nnoremap Q @q
+
+" Toggle Paste Mode
+nnoremap cop :set paste!<cr>
+
+" 'Fix' jump list
+nnoremap <c-o> <c-i>
+nnoremap <c-i> <c-o>
+
+" 'Fix' change list
+nnoremap g, g;
+nnoremap g; g,
+
+" Navigate buffers
+nnoremap <silent>gb :bprev<cr>
+nnoremap <silent>gB :bnext<cr>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -227,8 +215,7 @@ inoremap jk <esc>
 inoremap kj <esc>
 
 " Better pasting in insert mode
-inoremap <F4> <c-r>"
-inoremap <F5> <c-r>*
+inoremap <c-v> <c-r>+
 
 " Navigate in insert mode
 inoremap <c-j> <down>
@@ -253,7 +240,7 @@ vnoremap <c-d> <c-u>
 vnoremap <c-s> <c-d>
 
 " Quick replace
-vnoremap , :s/
+vnoremap <c-a>s :s/
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 
@@ -271,7 +258,7 @@ command! Vimrc :next $MYVIMRC<cr>
 
 " 6. Autocommands -------------------------------------------------------- {{{1
 
-" RessurrectLine: Remember last opened line {{{
+" Remember last opened line
 augroup RessurrectLine
 	autocmd!
 	autocmd BufReadPost *
@@ -279,61 +266,22 @@ augroup RessurrectLine
 				\ exe "normal! g'\"" | 
 				\ endif
 augroup END
-" }}}
 
-" VimReload: Source .vimrc when save {{{
+" Source .vimrc when save
 augroup VimReload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
 augroup END
-" }}}
-
-" CursorLine: Don't show cursorline in insert mode {{{
-augroup CursorLine
-	au!
-	au WinLeave,InsertEnter * set nocursorline
-	au WinEnter,InsertLeave * set cursorline
-augroup END
-" }}}
 
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
-function! ToggleLineNumber()  " {{{
-	if(&relativenumber == 1)
-		setlocal norelativenumber
-	else
-		setlocal relativenumber
-	endif
-endfunc
-" }}}
+" EMPTY
 
-function! ToggleBackground()  " {{{
-	if(g:colors_name == "sol")
-		colorscheme jellybeans
-	else
-		colorscheme sol-term
-	endif
-endfunc
-" }}}
-
-function! ToggleSpellCheck()
-	set spell!	
-
-	if(&spell == 1)
-		nnoremap <silent><left> [s
-		nnoremap <silent><right> ]s
-		nnoremap <silent><up> z=
-	else
-		nnoremap <silent><left> :bprev<cr>k
-		nnoremap <silent><right> :bnext<cr>
-		nnoremap <silent><up> :call ToggleBackground()<cr>
-	endif
-endfunc
 
 " 8. Plugin Customization ------------------------------------------------ {{{1
 
-" Airline {{{
+" Airline
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -345,63 +293,47 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-" }}}
 
-" CtrlP {{{
+" CtrlP
 let g:ctrlp_map = '<c-f>'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
-" }}}
 
-" DelimitMate {{{
+" DelimitMate
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
-" }}}
 
-" GUndo {{{
+" GUndo
 nnoremap <c-u> :GundoToggle<cr>
-" }}}
 
-" NERDCommenter {{{
-map <silent>-- <plug>NERDCommenterToggle
-" }}}
-
-" NERDTree {{{
+" NERDTree
 nnoremap <silent><c-n> :NERDTreeToggle<cr>
-" }}}
 
-" UltiSnips {{{
+" UltiSnips
 let g:UltiSnipsExpandTrigger = '<c-x>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-" }}}
 
-" Rainbow-Parentheses {{{
+" Rainbow-Parentheses
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-" }}}
 
-" Sayonara {{{
+" Sayonara
 nnoremap <leader>q :Sayonara<cr>
-" }}}
 
-" Snnm {{{
+" Snnm
 let g:snnmapp = '/usr/local/bin/snnm'
-" }}}
 
-" Syntastic {{{
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-" }}}
 
-" Tagbar {{{
+" Tagbar
 nnoremap <silent><c-g> :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
-" }}}
 
-" YouCompleteMe {{{
+" YouCompleteMe
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion=['<c-j>', '<down>']
 let g:ycm_key_list_previous_completion=['<c-k>', '<up>']
-" }}}
