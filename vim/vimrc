@@ -292,12 +292,6 @@ augroup CursorLine
 augroup END
 " }}}
 
-" SmartJump: Automatically adds cursor position to jumplist {{{
-augroup SmartJump
-	au!
-	au TextChanged,CursorHold * normal! m'
-augroup END
-" }}}
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
