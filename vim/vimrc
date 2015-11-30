@@ -62,7 +62,7 @@ filetype plugin indent on
 
 " 2. Leader Key ---------------------------------------------------------- {{{1
 
-let mapleader = "\<space>"
+let mapleader = "\<SPACE>"
 
 
 " 3. Editor Preferences -------------------------------------------------- {{{1
@@ -80,7 +80,7 @@ set spelllang=en_us
 set visualbell
 
 " Suppress 'ex-mode'
-nnoremap Q <nop>
+nnoremap Q <NOP>
 
 " 3.1. Tab Preferences --------------------------------------------------- {{{2
 set tabstop=4
@@ -99,11 +99,11 @@ set hlsearch
 set incsearch
 
 " Turns hlsearch on and keep search matches in the middle of the screen
-nnoremap n :set hlsearch<cr>nzzzv
-nnoremap N :set hlsearch<cr>Nzzzv
+nnoremap n :set hlsearch<CR>nzzzv
+nnoremap N :set hlsearch<CR>Nzzzv
 
 " Don't move on *
-nnoremap * :set hlsearch<cr>*<c-o>
+nnoremap * :set hlsearch<CR>*<C-O>
 
 
 " 4. Appearance ---------------------------------------------------------- {{{1
@@ -131,21 +131,21 @@ set listchars=tab:\ \ ,trail:·
 " 5.1. Normal Mode ------------------------------------------------------- {{{2
 
 " Window Resizing
-nnoremap <silent>+ :vertical resize +5<cr>
-nnoremap <silent>_ :vertical resize -5<cr>
+nnoremap <SILENT>+ :vertical resize +5<CR>
+nnoremap <SILENT>_ :vertical resize -5<CR>
 
 " Window Movement
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
 
 " Move through wrapped lines
 nnoremap j gj
 nnoremap k gk
 
 " REdo
-nnoremap U <c-r>
+nnoremap U <C-R>
 
 " Maps 'H' to BOL and 'L' to EOL
 nnoremap gH 0
@@ -156,76 +156,76 @@ nnoremap L $
 nnoremap Y y$
 
 " Make ctrl-d pageup, ctrl-s pagedown
-nnoremap <c-d> <c-b>
-nnoremap <c-s> <c-f>
+nnoremap <C-D> <C-B>
+nnoremap <C-S> <C-F>
 
 " Save file
-nnoremap <leader>w :w<cr>
+nnoremap <LEADER>w :w<CR>
 
 " Save file (sudo)
-nnoremap <leader><leader>w :w !sudo tee % >/dev/null<cr>
+nnoremap <LEADER><LEADER>w :w !sudo tee % >/dev/null<CR>
 
 " Force quit
-nnoremap <leader><leader>q :q!<cr>
+nnoremap <LEADER><LEADER>q :q!<CR>
 
 " Select last modified text
 nnoremap gV `[v`]
 
 " Quick search and replace
-nnoremap <c-a>a /\v
-nnoremap <c-a>s :%s//
+nnoremap <C-A>a /\v
+nnoremap <C-A>s :%s//
 
 " Documentation
 nnoremap ? K
 
 " Split line
-nnoremap K i<cr><esc>
+nnoremap K i<CR><ESC>
 
 " Make jumping more comfortable in ABNT2 keyboard
 nnoremap ' `
 
 " Redraw!
-nnoremap <F5> :redraw!<cr>
+nnoremap <F5> :redraw!<CR>
 
 " Increment number
-nnoremap <c-c> <c-a>
+nnoremap <C-C> <C-A>
 
 " Better macro trigger
 nnoremap Q @q
 
 " Toggle Paste Mode
-nnoremap cop :set paste!<cr>
+nnoremap cop :set paste!<CR>
 
 " 'Fix' jump list
-nnoremap <c-o> <c-i>
-nnoremap <c-i> <c-o>
+nnoremap <C-O> <C-I>
+nnoremap <C-I> <C-O>
 
 " 'Fix' change list
 nnoremap g, g;
 nnoremap g; g,
 
 " Navigate buffers
-nnoremap <silent>gb :bprev<cr>
-nnoremap <silent>gB :bnext<cr>
+nnoremap <SILENT>gb :bprev<CR>
+nnoremap <SILENT>gB :bnext<CR>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode
-inoremap jk <esc>
-inoremap kj <esc>
+inoremap jk <ESC>
+inoremap kj <ESC>
 
 " Better pasting in insert mode
-inoremap <c-v> <c-r>+
+inoremap <C-V> <C-R>+
 
 " Navigate in insert mode
-inoremap <c-j> <down>
-inoremap <c-k> <up>
-inoremap <c-l> <right>
+inoremap <C-J> <DOWN>
+inoremap <C-K> <UP>
+inoremap <C-L> <RIGHT>
 
 " 5.3. Visual Mode ------------------------------------------------------- {{{2
 
 " Make 'space' leave visual mode
-vnoremap <leader> <esc>
+vnoremap <LEADER> <ESC>
 
 " Reselect visual block after indent
 vnoremap < <gv
@@ -236,24 +236,24 @@ vnoremap H ^
 vnoremap L $
 
 " Make ctrl-d pageup, ctrl-s pagedown
-vnoremap <c-d> <c-b>
-vnoremap <c-s> <c-f>
+vnoremap <C-D> <C-B>
+vnoremap <C-S> <C-F>
 
 " Quick replace
-vnoremap <c-a>s :s/
+vnoremap <C-A>s :s/
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 
 " Make 'jk' and 'kj' leave command mode
-cnoremap jk <c-u><bs>
-cnoremap kj <c-u><bs>
+cnoremap jk <C-U><BS>
+cnoremap kj <C-U><BS>
 
 " Navigate history
-cnoremap <c-j> <down>
-cnoremap <c-k> <up>
+cnoremap <C-J> <DOWN>
+cnoremap <C-K> <UP>
 
 " Tweak .vimrc
-command! Vimrc :next $MYVIMRC<cr>
+command! Vimrc :next $MYVIMRC<CR>
 
 
 " 6. Autocommands -------------------------------------------------------- {{{1
@@ -295,7 +295,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " CtrlP
-let g:ctrlp_map = '<c-f>'
+let g:ctrlp_map = '<C-F>'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " DelimitMate
@@ -303,15 +303,15 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
 " GUndo
-nnoremap <c-u> :GundoToggle<cr>
+nnoremap <C-U> :GundoToggle<CR>
 
 " NERDTree
-nnoremap <silent><c-n> :NERDTreeToggle<cr>
+nnoremap <SILENT><C-N> :NERDTreeToggle<CR>
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = '<c-x>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsExpandTrigger = '<C-X>'
+let g:UltiSnipsJumpForwardTrigger = '<TAB>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
 " Rainbow-Parentheses
 au VimEnter * RainbowParenthesesToggle
@@ -320,7 +320,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " Sayonara
-nnoremap <leader>q :Sayonara<cr>
+nnoremap <LEADER>q :Sayonara<CR>
 
 " Snnm
 let g:snnmapp = '/usr/local/bin/snnm'
@@ -330,10 +330,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 " Tagbar
-nnoremap <silent><c-g> :TagbarToggle<cr>
+nnoremap <SILENT><C-G> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " YouCompleteMe
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_list_select_completion=['<c-j>', '<down>']
-let g:ycm_key_list_previous_completion=['<c-k>', '<up>']
+let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']
+let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']
