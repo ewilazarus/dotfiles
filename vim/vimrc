@@ -236,8 +236,8 @@ vnoremap H ^
 vnoremap L $
 
 " Make ctrl-d pageup, ctrl-s pagedown
-vnoremap <c-d> <c-u>
-vnoremap <c-s> <c-d>
+vnoremap <c-d> <c-b>
+vnoremap <c-s> <c-f>
 
 " Quick replace
 vnoremap <c-a>s :s/
