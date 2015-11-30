@@ -144,6 +144,7 @@ nnoremap k gk
 nnoremap U <c-r>
 
 " Maps 'H' to BOL and 'L' to EOL
+nnoremap gH 0
 nnoremap H ^
 nnoremap L $
 
@@ -209,8 +210,11 @@ nnoremap <F1> :redraw!<cr>
 nnoremap == ggVG=
 
 " 'Fix' jumplist
-nnoremap <c-o> <c-i>
-nnoremap <c-i> <c-o>
+nnoremap <c-o> g,
+nnoremap <c-i> g;
+
+" Increment number
+nnoremap <c-c> <c-a>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
