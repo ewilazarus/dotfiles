@@ -253,7 +253,7 @@ cnoremap <C-J> <DOWN>
 cnoremap <C-K> <UP>
 
 " Tweak .vimrc
-command! Vimrc :next $MYVIMRC<CR>
+command! Vimrc :tabe $MYVIMRC
 
 
 " 6. Autocommands -------------------------------------------------------- {{{1
@@ -270,7 +270,7 @@ augroup END
 " Source .vimrc when save
 augroup VimReload
 	autocmd!
-	autocmd BufWritePost $MYVIMRC	source $MYVIMRC
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
 
