@@ -27,6 +27,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
+Plugin 'bronson/vim-visual-star-search'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gmarik/Vundle.vim'
@@ -41,6 +42,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'sjl/gundo.vim'
+Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -107,6 +109,10 @@ nnoremap * :set hlsearch<CR>*<C-O>
 
 " 4. Appearance ---------------------------------------------------------- {{{1
 
+if ($COLORTERM == 'gnome-terminal')
+	set t_Co=256
+endif
+
 syntax on
 colorscheme jellybeans
 
@@ -129,8 +135,8 @@ set listchars=tab:→\ ,trail:·,eol:¬
 " 5.1. Normal Mode ------------------------------------------------------- {{{2
 
 " Window Resizing
-nnoremap <SILENT>+ :vertical resize +5<CR>
-nnoremap <SILENT>_ :vertical resize -5<CR>
+nnoremap <silent>+ :vertical resize +5<CR>
+nnoremap <silent>_ :vertical resize -5<CR>
 
 " Window Movement
 nnoremap <C-J> <C-W>j
@@ -196,6 +202,9 @@ nnoremap Q @q
 " Toggle Paste Mode
 nnoremap cop :set paste!<CR>
 
+" Toggle Rainbow Parenthesis
+nnoremap coa :RainbowParenthesesToggle<CR>
+
 " 'Fix' jump list
 nnoremap <C-O> <C-I>
 nnoremap <C-I> <C-O>
@@ -205,8 +214,8 @@ nnoremap g, g;
 nnoremap g; g,
 
 " Navigate buffers
-nnoremap <SILENT>gb :bprev<CR>
-nnoremap <SILENT>gB :bnext<CR>
+nnoremap <silent>gb :bprev<CR>
+nnoremap <silent>gB :bnext<CR>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -306,7 +315,7 @@ let delimitMate_expand_space = 1
 nnoremap <C-U> :GundoToggle<CR>
 
 " NERDTree
-nnoremap <SILENT><C-N> :NERDTreeToggle<CR>
+nnoremap <silent><C-N> :NERDTreeToggle<CR>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = '<C-X>'
@@ -314,7 +323,7 @@ let g:UltiSnipsJumpForwardTrigger = '<TAB>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
 " Rainbow-Parentheses
-au VimEnter * RainbowParenthesesToggle
+" au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
@@ -333,7 +342,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
 " Tagbar
-nnoremap <SILENT><C-G> :TagbarToggle<CR>
+nnoremap <silent><C-G> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " YouCompleteMe
