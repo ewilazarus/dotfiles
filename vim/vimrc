@@ -22,12 +22,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'bronson/vim-visual-star-search'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ewilazarus/vim-snnm'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gmarik/Vundle.vim'
@@ -36,11 +34,12 @@ Plugin 'justinmk/vim-gtfo'
 Plugin 'kien/ctrlp.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'mhinz/vim-sayonara'
 Plugin 'mileszs/ack.vim'
+Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'SirVer/ultisnips'
 Plugin 'sjl/gundo.vim'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-abolish'
@@ -50,6 +49,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
@@ -129,12 +129,6 @@ set listchars=tab:→\ ,trail:·,eol:¬
 nnoremap <silent>+ :vertical resize +5<CR>
 nnoremap <silent>_ :vertical resize -5<CR>
 
-" Window Movement
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
-
 " Move through wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -160,6 +154,9 @@ nnoremap <LEADER>w :w<CR>
 " Save file (sudo)
 nnoremap <LEADER><LEADER>w :w !sudo tee % >/dev/null<CR>
 
+" Quick quit
+nnoremap <LEADER>q :bd<CR>
+
 " Force quit
 nnoremap <LEADER><LEADER>q :q!<CR>
 
@@ -167,13 +164,13 @@ nnoremap <LEADER><LEADER>q :q!<CR>
 nnoremap gV `[v`]
 
 " Quick search and replace
-nnoremap ga /\v
-nnoremap gA ?\v
-nnoremap gs :%s//
-nnoremap gS :%S//
+nnoremap / /\v
+nnoremap ? ?\v
+nnoremap <C-R> :%s//
+nnoremap <C-E> :%S//
 
 " Documentation
-nnoremap ? K
+nnoremap <F1> K
 
 " Split line
 nnoremap K i<CR><ESC>
@@ -207,6 +204,8 @@ nnoremap g; g,
 " Navigate buffers
 nnoremap <silent>gb :bprev<CR>
 nnoremap <silent>gB :bnext<CR>
+
+nnoremap <LEADER>r :call ToggleREPL()<CR>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -258,6 +257,15 @@ command! Vimrc :tabe $MYVIMRC
 
 " 6. Autocommands -------------------------------------------------------- {{{1
 
+" 6.1. Language specific ------------------------------------------------- {{{2
+
+augroup Clojure
+	autocmd!
+	au FileType clojure :RainbowParenthesesActivate
+augroup END
+
+" 6.2. Miscelaneous ------------------------------------------------------ {{{2
+
 " Remember last opened line
 augroup RessurrectLine
 	autocmd!
@@ -276,7 +284,16 @@ augroup END
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
-" EMPTY
+" Toggle REPL pane
+function! ToggleREPL()
+	if !exists("b:repl")
+		:VimuxPromptCommand
+		let b:repl = 1
+	else
+		:VimuxCloseRunner
+		unlet b:repl
+	endif
+endfunction
 
 
 " 8. Plugin Customization ------------------------------------------------ {{{1
@@ -314,19 +331,30 @@ let g:UltiSnipsJumpForwardTrigger = '<TAB>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
 " Rainbow-Parentheses
-" au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
-" Sayonara
-nnoremap <LEADER>q :Sayonara<CR>
+let g:rbpt_colorpairs = [
+    \ ['darkyellow',      'SeaGreen3'],
+    \ ['gray',   'firebrick3'],
+    \ ['cyan',    'DarkOrchid3'],
+    \ ['magenta', 'DarkOrchid3'],
+    \ ['green',   'RoyalBlue3'],
+    \ ['blue',    'firebrick3'],
+    \ ['red',         'RoyalBlue3'],
+    \ ['brown',       'firebrick3'],
+    \ ['yellow',    'SeaGreen3'],
+    \ ['darkgray',       'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkmagenta',    'RoyalBlue3'],
+    \ ['green',     'SeaGreen3'],
+    \ ['darkblue', 'DarkOrchid3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['white',       'firebrick3'],
+    \ ]
 
 " Snnm
 let g:snnmapp = '/usr/local/bin/snnm'
-
-" Splitjoin
-let g:splitjoin_split_mapping = 'gK'
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
