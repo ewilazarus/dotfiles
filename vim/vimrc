@@ -166,8 +166,7 @@ nnoremap gV `[v`]
 " Quick search and replace
 nnoremap / /\v
 nnoremap ? ?\v
-nnoremap <C-R> :%s//
-nnoremap <C-E> :%S//
+nnoremap € :%s//
 
 " Documentation
 nnoremap <F1> K
@@ -205,7 +204,7 @@ nnoremap g; g,
 nnoremap <silent>gb :bprev<CR>
 nnoremap <silent>gB :bnext<CR>
 
-nnoremap <LEADER>r :call ToggleREPL()<CR>
+nnoremap ® :call ToggleREPL()<CR>
 
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
@@ -239,7 +238,7 @@ vnoremap <C-D> <C-B>
 vnoremap <C-S> <C-F>
 
 " Quick replace
-vnoremap <C-A>s :s/
+vnoremap € :s/
 
 " 5.4. Command Mode ------------------------------------------------------ {{{2
 

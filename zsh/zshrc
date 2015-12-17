@@ -44,7 +44,13 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 source $ZSH/oh-my-zsh.sh
 
 
-# 2. Keybindings --------------------------------------------------------- {{{1
+# 2. Options ------------------------------------------------------------- {{{1
+
+# Better globbing
+setopt extendedglob
+
+
+# 3. Keybindings --------------------------------------------------------- {{{1
 
 # Enable vim-mode
 bindkey -v
@@ -60,13 +66,13 @@ bindkey -M vicmd 'L' end-of-line
 bindkey '^U' history-incremental-search-backward
 
 
-# 3. Path ---------------------------------------------------------------- {{{1
+# 4. Path ---------------------------------------------------------------- {{{1
 
 # Add personal scripts to path
 export PATH="$HOME/Scripts:$PATH"
 
 
-# 4. Exports ------------------------------------------------------------- {{{1
+# 5. Exports ------------------------------------------------------------- {{{1
 
 export MYVIMRC=~/.vimrc
 
@@ -77,7 +83,7 @@ export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source $VIRTUALENVWRAPPER_SCRIPT
 
 
-# 5. Aliases ------------------------------------------------------------- {{{1
+# 6. Aliases ------------------------------------------------------------- {{{1
 
 alias ll='ls -alhF --group-directories-first'
 alias la='la -A --group-directories-first'
@@ -103,12 +109,12 @@ alias open='xdg-open'
 alias nopyc='rm *.pyc'
 
 
-# 6. Functions ----------------------------------------------------------- {{{1
+# 7. Functions ----------------------------------------------------------- {{{1
 
 # EMPTY
 
 
-# 7. Misc ---------------------------------------------------------------- {{{1
+# 8. Misc ---------------------------------------------------------------- {{{1
 
 # Make <c-s> available for vim
 stty stop undef
