@@ -42,3 +42,4 @@ tree
 cloc
 htop
 xclip
+fonts-inconsolata

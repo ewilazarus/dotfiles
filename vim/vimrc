@@ -105,7 +105,7 @@ if ($COLORTERM == 'gnome-terminal')
 endif
 
 syntax on
-colorscheme jellybeans
+colorscheme molokai
 
 " Statusline
 set laststatus=2
@@ -137,7 +137,6 @@ nnoremap k gk
 nnoremap U <C-R>
 
 " Maps 'H' to BOL and 'L' to EOL
-nnoremap gH 0
 nnoremap H ^
 nnoremap L $
 
@@ -256,15 +255,6 @@ command! Vimrc :tabe $MYVIMRC
 
 " 6. Autocommands -------------------------------------------------------- {{{1
 
-" 6.1. Language specific ------------------------------------------------- {{{2
-
-augroup Clojure
-	autocmd!
-	au FileType clojure :RainbowParenthesesActivate
-augroup END
-
-" 6.2. Miscelaneous ------------------------------------------------------ {{{2
-
 " Remember last opened line
 augroup RessurrectLine
 	autocmd!
@@ -333,24 +323,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-let g:rbpt_colorpairs = [
-    \ ['darkyellow',      'SeaGreen3'],
-    \ ['gray',   'firebrick3'],
-    \ ['cyan',    'DarkOrchid3'],
-    \ ['magenta', 'DarkOrchid3'],
-    \ ['green',   'RoyalBlue3'],
-    \ ['blue',    'firebrick3'],
-    \ ['red',         'RoyalBlue3'],
-    \ ['brown',       'firebrick3'],
-    \ ['yellow',    'SeaGreen3'],
-    \ ['darkgray',       'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkmagenta',    'RoyalBlue3'],
-    \ ['green',     'SeaGreen3'],
-    \ ['darkblue', 'DarkOrchid3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['white',       'firebrick3'],
-    \ ]
 
 " Snnm
 let g:snnmapp = '/usr/local/bin/snnm'
