@@ -27,7 +27,7 @@ Plugin 'bling/vim-airline'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ewilazarus/vim-snnm'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'ewilazarus/preto'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'justinmk/vim-gtfo'
@@ -105,7 +105,7 @@ if ($COLORTERM == 'gnome-terminal')
 endif
 
 syntax on
-colorscheme molokai
+colorscheme preto
 
 " Statusline
 set laststatus=2
@@ -284,6 +284,14 @@ function! ToggleREPL()
 	endif
 endfunction
 
+" Show syntax highlighting groups for word under cursor
+nmap <LEADER>h :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " 8. Plugin Customization ------------------------------------------------ {{{1
 
