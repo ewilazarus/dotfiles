@@ -19,39 +19,34 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'benmills/vimux'
-Plugin 'bling/vim-airline'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ewilazarus/vim-snnm'
-Plugin 'ewilazarus/preto'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'honza/vim-snippets'
-Plugin 'justinmk/vim-gtfo'
-Plugin 'kien/ctrlp.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'mileszs/ack.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'SirVer/ultisnips'
-Plugin 'sjl/gundo.vim'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'Valloric/YouCompleteMe'
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ewilazarus/vim-snnm'
+Plug 'ewilazarus/preto'
+Plug 'honza/vim-snippets'
+Plug 'justinmk/vim-gtfo'
+Plug 'kien/ctrlp.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
+Plug 'sjl/gundo.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'shougo/neocomplete.vim'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 
@@ -70,7 +65,7 @@ set noswapfile
 set foldlevel=99
 set clipboard=unnamedplus
 set mouse=a
-set scrolloff=10
+set scrolloff=5
 set spelllang=en_us
 set visualbell
 
@@ -136,9 +131,9 @@ nnoremap k gk
 " REdo
 nnoremap U <C-R>
 
-" Maps 'H' to BOL and 'L' to EOL
-nnoremap H ^
-nnoremap L $
+" Maps '0' to BOL and '-' to EOL
+nnoremap 0 ^
+nnoremap - $
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -228,9 +223,9 @@ vnoremap <LEADER> <ESC>
 vnoremap < <gv
 vnoremap > >gv
 
-" Maps 'H' to BOL and 'L' to EOL
-vnoremap H ^
-vnoremap L $
+" Maps '0' to BOL and '-' to EOL
+vnoremap 0 ^
+vnoremap - $
 
 " Make ctrl-d pageup, ctrl-s pagedown
 vnoremap <C-D> <C-B>
@@ -308,6 +303,8 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+let g:airline_theme = 'distinguished'
+
 " CtrlP
 let g:ctrlp_map = '<C-F>'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -318,6 +315,9 @@ let delimitMate_expand_space = 1
 
 " GUndo
 nnoremap <C-U> :GundoToggle<CR>
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
 
 " NERDTree
 nnoremap <silent><C-N> :NERDTreeToggle<CR>
@@ -342,8 +342,3 @@ let g:syntastic_auto_loc_list = 1
 " Tagbar
 nnoremap <silent><C-G> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
-" YouCompleteMe
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']
-let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']

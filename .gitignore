@@ -1,7 +1,5 @@
 # VIM
-vim/vim/bundle/*
-!vim/vim/bundle/Vundle.vim
-!vim/vim/bundle/Vundle.vim/*
+vim/vim/plugged/*
 
 # TMUX
 tmux/tmux/plugins/*
