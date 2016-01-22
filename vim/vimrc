@@ -16,38 +16,34 @@
 
 " 1. Plugin Management --------------------------------------------------- {{{1
 
-set nocompatible
-filetype off
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ewilazarus/vim-snnm'
 Plug 'ewilazarus/preto'
-Plug 'honza/vim-snippets'
+Plug 'ewilazarus/vim-snnm'
 Plug 'justinmk/vim-gtfo'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'kovisoft/paredit', { 'for': 'clojure' }
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdtree'
+Plug 'raimondi/delimitmate'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'SirVer/ultisnips'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'sjl/gundo.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'shougo/neocomplete.vim'
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer' }
 
 call plug#end()
-filetype plugin indent on
 
 
 " 2. Leader Key ---------------------------------------------------------- {{{1
@@ -70,6 +66,7 @@ set spelllang=en_us
 set visualbell
 
 " 3.1. Tab Preferences --------------------------------------------------- {{{2
+
 set tabstop=4
 set smarttab
 set shiftwidth=4
@@ -79,6 +76,7 @@ set copyindent
 set completeopt=menu
 
 " 3.2. Search Preferences ------------------------------------------------ {{{2
+
 set showmatch
 set ignorecase
 set smartcase
@@ -316,9 +314,6 @@ let delimitMate_expand_space = 1
 " GUndo
 nnoremap <C-U> :GundoToggle<CR>
 
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-
 " NERDTree
 nnoremap <silent><C-N> :NERDTreeToggle<CR>
 
@@ -342,3 +337,8 @@ let g:syntastic_auto_loc_list = 1
 " Tagbar
 nnoremap <silent><C-G> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+
+" YouCompleteMe		
+let g:ycm_show_diagnostics_ui = 0		
+let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']		
+let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']
