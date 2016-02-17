@@ -22,10 +22,10 @@ Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ewilazarus/preto'
 Plug 'ewilazarus/vim-snnm'
+Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'justinmk/vim-gtfo'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'kovisoft/paredit', { 'for': 'clojure' }
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'raimondi/delimitmate'
@@ -83,12 +83,12 @@ set smartcase
 set hlsearch
 set incsearch
 
-" Turns hlsearch on and keep search matches in the middle of the screen
-nnoremap n :set hlsearch<CR>nzzzv
-nnoremap N :set hlsearch<CR>Nzzzv
+" Keep search matches in the middle of the screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Don't move on *
-nnoremap * :set hlsearch<CR>*<C-O>
+nnoremap * *<C-O>
 
 
 " 4. Appearance ---------------------------------------------------------- {{{1
@@ -130,8 +130,8 @@ nnoremap k gk
 nnoremap U <C-R>
 
 " Maps '0' to BOL and '-' to EOL
-nnoremap 0 ^
-nnoremap - $
+nnoremap H ^
+nnoremap L $
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -141,7 +141,7 @@ nnoremap <C-D> <C-B>
 nnoremap <C-S> <C-F>
 
 " Save file
-nnoremap <LEADER>w :w<CR>
+nnoremap <LEADER>w :update<CR>
 
 " Save file (sudo)
 nnoremap <LEADER><LEADER>w :w !sudo tee % >/dev/null<CR>
@@ -198,6 +198,8 @@ nnoremap <silent>gB :bnext<CR>
 
 nnoremap ® :call ToggleREPL()<CR>
 
+nnoremap <LEADER>e :%Eval<CR>
+
 " 5.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode
@@ -222,8 +224,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Maps '0' to BOL and '-' to EOL
-vnoremap 0 ^
-vnoremap - $
+vnoremap H ^
+vnoremap L $
 
 " Make ctrl-d pageup, ctrl-s pagedown
 vnoremap <C-D> <C-B>
@@ -286,6 +288,23 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+
+function! s:InitConsistentRepeat(command)
+	if a:command =~# '[FT]'
+		noremap ; ,
+		noremap , ;
+	else
+		silent! unmap ;
+		silent! unmap ,
+	endif
+	return a:command
+endfunc
+noremap <expr> f <SID>InitConsistentRepeat('f')
+noremap <expr> t <SID>InitConsistentRepeat('t')
+noremap <expr> F <SID>InitConsistentRepeat('F')
+noremap <expr> T <SID>InitConsistentRepeat('T')
+
+
 " 8. Plugin Customization ------------------------------------------------ {{{1
 
 " Airline
@@ -300,8 +319,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-let g:airline_theme = 'distinguished'
 
 " CtrlP
 let g:ctrlp_map = '<C-F>'

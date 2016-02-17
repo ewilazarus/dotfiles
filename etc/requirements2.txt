@@ -16,3 +16,4 @@
 virtualenvwrapper
 pelican
 ghp-import
+cheat

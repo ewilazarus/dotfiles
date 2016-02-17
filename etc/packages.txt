@@ -28,7 +28,6 @@ exuberant-ctags
 
 # REPLs
 python3
-octave
 
 # GUI applications
 recordmydesktop
@@ -43,3 +42,4 @@ cloc
 htop
 xclip
 fonts-inconsolata
+httpie
