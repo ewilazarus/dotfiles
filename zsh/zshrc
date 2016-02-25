@@ -28,7 +28,7 @@ export VISUAL=$EDITOR
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gianu"
+ZSH_THEME="garyblessington"
 
 # Uncomment the following line to disable auto-setting terminal title.
 export DISABLE_AUTO_TITLE="true"
@@ -99,10 +99,10 @@ alias tmat='tmux -2 attach -t'
 alias tmks='tmux -2 kill-server'
 alias tml='tmuxp load'
 
-alias ev='nvim ~/.vimrc'
-alias ez='nvim ~/.zshrc'
-alias et='nvim ~/.tmux.conf'
-alias ep='nvim ~/.dotfiles/etc/packages.txt'
+alias ev='vim ~/.vimrc'
+alias ez='vim ~/.zshrc'
+alias et='vim ~/.tmux.conf'
+alias ep='vim ~/.dotfiles/etc/packages.txt'
 
 alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'

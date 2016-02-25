@@ -1,71 +1,147 @@
 " vim: fdm=marker
-" vim: foldlevel=0
 
-"        _
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 " copyright: (c) 2015 Gabriel Lima
-"
 " license: MIT
-"
 
 " CONTENTS:
 
-" 1. Plugin Management --------------------------------------------------- {{{1
+
+" 1. Plugins ------------------------------------------------------------- {{{1
+
+" 1.1. List -------------------------------------------------------------- {{{2
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'
+" UI/Navigation
+Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ewilazarus/preto'
-Plug 'ewilazarus/vim-snnm'
-Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'justinmk/vim-gtfo'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Buffer Navigation
 Plug 'kien/ctrlp.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'majutsushi/tagbar'
-Plug 'mileszs/ack.vim'
-Plug 'raimondi/delimitmate'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'majutsushi/tagbar'
+
+" Miscelaneous
+Plug 'ewilazarus/vim-snnm'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'raimondi/delimitmate'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'sjl/gundo.vim'
+Plug 'sirver/ultisnips' | Plug
+			\ 'honza/vim-snippets'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer' }
 
+" Language Specifics - Clojure
+Plug 'guns/vim-sexp' | Plug
+			\ 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
 call plug#end()
 
+" 1.2. Settings ---------------------------------------------------------- {{{2
 
-" 2. Leader Key ---------------------------------------------------------- {{{1
+" Airline
 
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" let g:airline_theme = 'simple'
+
+
+" CtrlP
+nnoremap go. :CtrlP<CR>
+nnoremap goh :CtrlP /home/ewilazarus<CR>
+nnoremap gow :CtrlP /home/ewilazarus/Workspace<CR>
+nnoremap god :CtrlP /home/ewilazarus/Dropbox<CR>
+nnoremap gou :CtrlP /home/ewilazarus/UniFB<CR>
+let g:ctrlp_custom_ignore = {
+			\ 'dir': '\v[\/]\.(git|hg|svn)$',
+			\ 'file': '\v\.(exe|so|dll|pyc|pyo|jar|zip|rar)$'
+			\ }
+
+" DelimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
+" NERDTree
+nnoremap <silent><C-N> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore = [
+			\ '\.pyc$',
+			\ '\.pyo$',
+			\ '\.jar$',
+			\ '\.exe$',
+			\ '\.dll$',
+			\ '\.so$',
+			\ '\.zip$',
+			\ '\.rar$'
+			\ ]
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = '<C-X>'
+
+" Rainbow-Parentheses
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" Snnm
+let g:snnmapp = '/usr/local/bin/snnm'
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+" Tagbar
+nnoremap <silent><C-G> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+" YouCompleteMe
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']
+let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']
+
+
+" 2. Editor Preferences -------------------------------------------------- {{{1
+
+" LEADER KEY
 let mapleader = "\<SPACE>"
-
-
-" 3. Editor Preferences -------------------------------------------------- {{{1
 
 set encoding=utf-8
 set nowrap
 set backspace=indent,eol,start
 set nobackup
 set noswapfile
-set foldlevel=99
 set clipboard=unnamedplus
 set mouse=a
 set scrolloff=5
 set spelllang=en_us
 set visualbell
+set modeline
 
-" 3.1. Tab Preferences --------------------------------------------------- {{{2
+" 2.1. Tab Preferences --------------------------------------------------- {{{2
 
 set tabstop=4
 set smarttab
@@ -75,7 +151,7 @@ set shiftround
 set copyindent
 set completeopt=menu
 
-" 3.2. Search Preferences ------------------------------------------------ {{{2
+" 2.2. Search Preferences ------------------------------------------------ {{{2
 
 set showmatch
 set ignorecase
@@ -91,14 +167,14 @@ nnoremap N Nzzzv
 nnoremap * *<C-O>
 
 
-" 4. Appearance ---------------------------------------------------------- {{{1
+" 3. Appearance ---------------------------------------------------------- {{{1
 
 if ($COLORTERM == 'gnome-terminal')
 	set t_Co=256
 endif
 
 syntax on
-colorscheme preto
+colorscheme badwolf
 
 " Statusline
 set laststatus=2
@@ -114,9 +190,9 @@ set colorcolumn=80
 set listchars=tab:→\ ,trail:·,eol:¬
 
 
-" 5. Mappings ------------------------------------------------------------ {{{1
+" 4. Mappings ------------------------------------------------------------ {{{1
 
-" 5.1. Normal Mode ------------------------------------------------------- {{{2
+" 4.1. Normal Mode ------------------------------------------------------- {{{2
 
 " Window Resizing
 nnoremap <silent>+ :vertical resize +5<CR>
@@ -133,7 +209,7 @@ nnoremap U <C-R>
 nnoremap H ^
 nnoremap L $
 
-" Make Y behave like other capitals
+" Make Y behave like other capital letters
 nnoremap Y y$
 
 " Make ctrl-d pageup, ctrl-s pagedown
@@ -155,10 +231,11 @@ nnoremap <LEADER><LEADER>q :q!<CR>
 " Select last modified text
 nnoremap gV `[v`]
 
-" Quick search and replace
+" Local (File) Search
 nnoremap / /\v
+
+" Global (Directory) Search TODO
 nnoremap ? ?\v
-nnoremap € :%s//
 
 " Documentation
 nnoremap <F1> K
@@ -168,6 +245,7 @@ nnoremap K i<CR><ESC>
 
 " Make jumping more comfortable in ABNT2 keyboard
 nnoremap ' `
+nnoremap ` '
 
 " Redraw!
 nnoremap <F5> :redraw!<CR>
@@ -175,7 +253,7 @@ nnoremap <F5> :redraw!<CR>
 " Increment number
 nnoremap <C-C> <C-A>
 
-" Better macro trigger
+" Quick macro trigger
 nnoremap Q @q
 
 " Toggle Paste Mode
@@ -193,14 +271,20 @@ nnoremap g, g;
 nnoremap g; g,
 
 " Navigate buffers
-nnoremap <silent>gb :bprev<CR>
-nnoremap <silent>gB :bnext<CR>
+nnoremap <silent>gB :bprev<CR>
+nnoremap <silent>gb :bnext<CR>
 
-nnoremap ® :call ToggleREPL()<CR>
+" Reindent whole file
+nnoremap === ggVG=
 
+" Open URL under cursor in browser (Make it compatible to gtfo e ctrlp)
+" nnoremap gox gx
+
+" Evaluate current file (Clojure only)
 nnoremap <LEADER>e :%Eval<CR>
 
-" 5.2. Insert Mode ------------------------------------------------------- {{{2
+
+" 4.2. Insert Mode ------------------------------------------------------- {{{2
 
 " Make 'jk' and 'kj' leave insert mode
 inoremap jk <ESC>
@@ -212,12 +296,10 @@ inoremap <C-V> <C-R>+
 " Navigate in insert mode
 inoremap <C-J> <DOWN>
 inoremap <C-K> <UP>
+inoremap <C-B> <LEFT>
 inoremap <C-L> <RIGHT>
 
-" 5.3. Visual Mode ------------------------------------------------------- {{{2
-
-" Make 'space' leave visual mode
-vnoremap <LEADER> <ESC>
+" 4.3. Visual Mode ------------------------------------------------------- {{{2
 
 " Reselect visual block after indent
 vnoremap < <gv
@@ -231,10 +313,7 @@ vnoremap L $
 vnoremap <C-D> <C-B>
 vnoremap <C-S> <C-F>
 
-" Quick replace
-vnoremap € :s/
-
-" 5.4. Command Mode ------------------------------------------------------ {{{2
+" 4.4. Command Mode ------------------------------------------------------ {{{2
 
 " Make 'jk' and 'kj' leave command mode
 cnoremap jk <C-U><BS>
@@ -243,6 +322,9 @@ cnoremap kj <C-U><BS>
 " Navigate history
 cnoremap <C-J> <DOWN>
 cnoremap <C-K> <UP>
+
+
+" 5. Commands ------------------------------------------------------------ {{{1
 
 " Tweak .vimrc
 command! Vimrc :tabe $MYVIMRC
@@ -255,7 +337,7 @@ augroup RessurrectLine
 	autocmd!
 	autocmd BufReadPost *
 				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\ exe "normal! g'\"" | 
+				\ exe "normal! g'\"" |
 				\ endif
 augroup END
 
@@ -279,16 +361,7 @@ function! ToggleREPL()
 	endif
 endfunction
 
-" Show syntax highlighting groups for word under cursor
-nmap <LEADER>h :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-
+" 'Fix' , and ;
 function! s:InitConsistentRepeat(command)
 	if a:command =~# '[FT]'
 		noremap ; ,
@@ -305,57 +378,17 @@ noremap <expr> F <SID>InitConsistentRepeat('F')
 noremap <expr> T <SID>InitConsistentRepeat('T')
 
 
-" 8. Plugin Customization ------------------------------------------------ {{{1
+" 8. Text Objects -------------------------------------------------------- {{{1
+"    (Many thanks to Conner McDaniel)
 
-" Airline
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-" CtrlP
-let g:ctrlp_map = '<C-F>'
-"let g:ctrlp_cmd = 'CtrlPBuffer'
-
-" DelimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-
-" GUndo
-nnoremap <C-U> :GundoToggle<CR>
-
-" NERDTree
-nnoremap <silent><C-N> :NERDTreeToggle<CR>
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<C-X>'
-let g:UltiSnipsJumpForwardTrigger = '<TAB>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
-
-" Rainbow-Parentheses
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-" Snnm
-let g:snnmapp = '/usr/local/bin/snnm'
-
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-
-" Tagbar
-nnoremap <silent><C-G> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-" YouCompleteMe		
-let g:ycm_show_diagnostics_ui = 0		
-let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']		
-let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']
+let s:items = ["<bar>", "\\", "/", ":", ".", "*", "_"]
+for item in s:items
+	exe "nnoremap yi".item." T".item."yt".item
+	exe "nnoremap ya".item." F".item."yf".item
+	exe "nnoremap ci".item." T".item."ct".item
+	exe "nnoremap ca".item." F".item."cf".item
+	exe "nnoremap di".item." T".item."dt".item
+	exe "nnoremap da".item." F".item."df".item
+	exe "nnoremap vi".item." T".item."vt".item
+	exe "nnoremap va".item." F".item."vf".item
+endfor
