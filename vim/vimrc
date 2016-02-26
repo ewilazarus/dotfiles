@@ -236,7 +236,7 @@ nnoremap gV `[v`]
 nnoremap / /\v
 
 " Global (Directory) Search TODO
-nnoremap ? :Ack 
+nnoremap ? :Ack ""<LEFT>
 
 " Documentation
 nnoremap <F1> K
@@ -324,6 +324,9 @@ cnoremap kj <C-U><BS>
 cnoremap <C-J> <DOWN>
 cnoremap <C-K> <UP>
 
+" Add global substitution
+cnoremap ¹ %s/
+cnoremap ² /g
 
 " 5. Commands ------------------------------------------------------------ {{{1
 
