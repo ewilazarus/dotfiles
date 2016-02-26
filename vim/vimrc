@@ -32,6 +32,7 @@ Plug 'majutsushi/tagbar'
 " Miscelaneous
 Plug 'ewilazarus/vim-snnm'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'mileszs/ack.vim'
 Plug 'raimondi/delimitmate'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
@@ -235,7 +236,7 @@ nnoremap gV `[v`]
 nnoremap / /\v
 
 " Global (Directory) Search TODO
-nnoremap ? ?\v
+nnoremap ? :Ack 
 
 " Documentation
 nnoremap <F1> K
@@ -327,7 +328,11 @@ cnoremap <C-K> <UP>
 " 5. Commands ------------------------------------------------------------ {{{1
 
 " Tweak .vimrc
-command! Vimrc :tabe $MYVIMRC
+command! -nargs=0 Vimrc :tabe $MYVIMRC
+
+" 'argdo' wrapper: substitute arglist with quickfix
+" command! -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
+command! -nargs=+ Argdo exe 'args' s:QuickfixFilenames() | argdo <args> | up
 
 
 " 6. Autocommands -------------------------------------------------------- {{{1
@@ -350,17 +355,6 @@ augroup END
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
-" Toggle REPL pane
-function! ToggleREPL()
-	if !exists("b:repl")
-		:VimuxPromptCommand
-		let b:repl = 1
-	else
-		:VimuxCloseRunner
-		unlet b:repl
-	endif
-endfunction
-
 " 'Fix' , and ;
 function! s:InitConsistentRepeat(command)
 	if a:command =~# '[FT]'
@@ -376,6 +370,15 @@ noremap <expr> f <SID>InitConsistentRepeat('f')
 noremap <expr> t <SID>InitConsistentRepeat('t')
 noremap <expr> F <SID>InitConsistentRepeat('F')
 noremap <expr> T <SID>InitConsistentRepeat('T')
+
+" Build deduped quickfix file name list
+function! s:QuickfixFilenames()
+	let bufnrs = {}
+	for item in getqflist()
+		let bufnrs[item['bufnr']] = bufname(item['bufnr'])
+	endfor
+	return join(map(values(bufnrs), 'fnameescape(v:val)'))
+endfunc
 
 
 " 8. Text Objects -------------------------------------------------------- {{{1
