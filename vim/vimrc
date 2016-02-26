@@ -325,8 +325,9 @@ cnoremap <C-J> <DOWN>
 cnoremap <C-K> <UP>
 
 " Add global substitution
-cnoremap ¹ %s/
-cnoremap ² /g
+cnoremap ¹ %s/\v
+cnoremap ² %s//
+cnoremap ³ /g
 
 " 5. Commands ------------------------------------------------------------ {{{1
 
