@@ -82,9 +82,8 @@ cd $LOCAL && rm -rf $TMPDIR
 
 echo "creating symbolic links in $HOME"
 homelink conky/conkyrc .conkyrc
-homelink conky/conkystart .conkystart
+homelink scripts/conkystart .conkystart
 homelink git/gitconfig .gitconfig
-homelink scripts Scripts
 homelink tmux/tmux .tmux
 homelink tmux/tmux.conf .tmux.conf
 homelink vim/vim .vim
