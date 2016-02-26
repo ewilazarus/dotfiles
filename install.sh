@@ -6,7 +6,7 @@
 # | | | | \__ \ || (_| | | |_\__ \ | | |
 # |_|_| |_|___/\__\__,_|_|_(_)___/_| |_|
 #
-# copyright: (c) 2015-2016 by Gabriel Lima
+# copyright: (c) 2015-2016 Gabriel Lima
 # license: MIT
 #
 # Installation script for a linux development machine basic configuration.
