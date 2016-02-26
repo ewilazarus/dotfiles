@@ -6,7 +6,7 @@
 # | | | | \__ \ || (_| | | |_\__ \ | | |
 # |_|_| |_|___/\__\__,_|_|_(_)___/_| |_|
 #
-# copyright: (c) 2015 by Gabriel Lima
+# copyright: (c) 2015-2016 by Gabriel Lima
 # license: MIT
 #
 # Installation script for a linux development machine basic configuration.
@@ -80,13 +80,10 @@ cd $TMPDIR && ./install.sh > /dev/null
 cd $LOCAL && rm -rf $TMPDIR
 
 
-
-
 echo "creating symbolic links in $HOME"
 homelink conky/conkyrc .conkyrc
 homelink conky/conkystart .conkystart
 homelink git/gitconfig .gitconfig
-homelink irssi .irssi
 homelink scripts Scripts
 homelink tmux/tmux .tmux
 homelink tmux/tmux.conf .tmux.conf
@@ -97,7 +94,7 @@ homelink zsh/zshrc .zshrc
 
 
 echo "installing vim plugins"
-vim -c PluginInstall -c quitall
+vim -c PlugInstall -c quitall
 
 
 echo "installing tmux plugins"

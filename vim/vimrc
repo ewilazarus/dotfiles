@@ -5,7 +5,7 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 "
-" copyright: (c) 2015 Gabriel Lima
+" copyright: (c) 2015-2016 Gabriel Lima
 " license: MIT
 
 " CONTENTS:
@@ -278,7 +278,7 @@ nnoremap <silent>gb :bnext<CR>
 nnoremap === ggVG=
 
 " Open URL under cursor in browser (Make it compatible to gtfo e ctrlp)
-" nnoremap gox gx
+nmap gox gx
 
 " Evaluate current file (Clojure only)
 nnoremap <LEADER>e :%Eval<CR>
@@ -392,3 +392,10 @@ for item in s:items
 	exe "nnoremap vi".item." T".item."vt".item
 	exe "nnoremap va".item." F".item."vf".item
 endfor
+
+
+" 9. Abbreviations ------------------------------------------------------- {{{1
+
+iabbrev gl Gabriel Lima
+iabbrev gvclima gvclima@gmail.com
+iabbrev ewilogs http://ewilazarus.github.io
