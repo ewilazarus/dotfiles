@@ -1,5 +1,6 @@
 " vim: fdm=marker
 
+"		 _
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
@@ -80,6 +81,7 @@ nnoremap gow :CtrlP /home/ewilazarus/Workspace<CR>
 nnoremap god :CtrlP /home/ewilazarus/Dropbox<CR>
 nnoremap gou :CtrlP /home/ewilazarus/UniFB<CR>
 nnoremap gos :CtrlP /home/ewilazarus/.vim/plugged/vim-snippets/UltiSnips<CR>
+nnoremap go? :echo "[.] Current; [h] Home; [w] Workspace; [d] Dropbox; [u] UniFB; [s] Snippets"<CR>
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/]\.(git|hg|svn)$',
 			\ 'file': '\v\.(exe|so|dll|pyc|pyo|jar|zip|rar)$'
