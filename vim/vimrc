@@ -199,6 +199,9 @@ set listchars=tab:→\ ,trail:·,eol:¬
 " Better way to get into command mode
 nnoremap <CR> :
 
+" Build/Test
+nnoremap <F9> :Dispatch<CR>
+
 " Window Resizing
 nnoremap <silent>+ :vertical resize +5<CR>
 nnoremap <silent>_ :vertical resize -5<CR>
