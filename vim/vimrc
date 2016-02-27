@@ -29,14 +29,12 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'
 
 " Miscelaneous
-Plug 'ewilazarus/vim-snnm'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mileszs/ack.vim'
 Plug 'raimondi/delimitmate'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'sirver/ultisnips' | Plug
-			\ 'ewilazarus/vim-snippets'
+Plug 'sirver/ultisnips'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -50,6 +48,12 @@ Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer', 'frozen
 Plug 'guns/vim-sexp' | Plug
 			\ 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Own Plugins
+let g:plug_url_format = 'git@github.com:%s.git'
+Plug 'ewilazarus/vim-snippets'
+Plug 'ewilazarus/vim-snnm'
+unlet g:plug_url_format
 
 call plug#end()
 
