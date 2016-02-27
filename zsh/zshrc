@@ -52,18 +52,11 @@ setopt extendedglob
 
 # 3. Keybindings --------------------------------------------------------- {{{1
 
-# Enable vim-mode
-bindkey -v
-
-# Vimrc compliance
-bindkey -M viins 'jk' vi-cmd-mode
-bindkey -M viins 'kj' vi-cmd-mode
-
-bindkey -M vicmd 'H' beginning-of-line
-bindkey -M vicmd 'L' end-of-line
-
 # Search shell history
 bindkey '^U' history-incremental-search-backward
+
+# Make ^Z bring last process to foreground
+bindkey -s '^Z' 'fg\n'
 
 
 # 4. Path ---------------------------------------------------------------- {{{1
@@ -89,10 +82,8 @@ alias ll='ls -alhF --group-directories-first'
 alias la='la -A --group-directories-first'
 alias l='ls -CF --group-directories-first'
 
-alias dreamh='ssh ewilazarus@lintilla.dreamhost.com'
 alias tfak='ssh limag@login.informatik.uni-freiburg.de'
 alias tmux='tmux -2' # enables 256 color support for tmux
-alias sml='rlwrap sml'
 alias ack='ack-grep'
 
 alias tmat='tmux -2 attach -t'
