@@ -10,7 +10,6 @@
 
 " CONTENTS:
 
-
 " 1. Plugins ------------------------------------------------------------- {{{1
 
 " 1.1. List -------------------------------------------------------------- {{{2
@@ -37,7 +36,7 @@ Plug 'raimondi/delimitmate'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'sirver/ultisnips' | Plug
-			\ 'honza/vim-snippets'
+			\ 'ewilazarus/vim-snippets'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -45,7 +44,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer' }
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer', 'frozen': 1 }
 
 " Language Specifics - Clojure
 Plug 'guns/vim-sexp' | Plug
@@ -70,15 +69,13 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" let g:airline_theme = 'simple'
-
-
 " CtrlP
 nnoremap go. :CtrlP<CR>
 nnoremap goh :CtrlP /home/ewilazarus<CR>
 nnoremap gow :CtrlP /home/ewilazarus/Workspace<CR>
 nnoremap god :CtrlP /home/ewilazarus/Dropbox<CR>
 nnoremap gou :CtrlP /home/ewilazarus/UniFB<CR>
+nnoremap gos :CtrlP /home/ewilazarus/.vim/plugged/vim-snippets/UltiSnips<CR>
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/]\.(git|hg|svn)$',
 			\ 'file': '\v\.(exe|so|dll|pyc|pyo|jar|zip|rar)$'
@@ -101,9 +98,6 @@ let g:NERDTreeIgnore = [
 			\ '\.rar$'
 			\ ]
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<C-X>'
-
 " Rainbow-Parentheses
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -122,6 +116,7 @@ let g:tagbar_autofocus = 1
 
 " YouCompleteMe
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_use_ultisnips_completer = 0
 let g:ycm_key_list_select_completion=['<C-J>', '<DOWN>']
 let g:ycm_key_list_previous_completion=['<C-K>', '<UP>']
 
@@ -142,6 +137,7 @@ set scrolloff=5
 set spelllang=en_us
 set visualbell
 set modeline
+set splitright
 
 " 2.1. Tab Preferences --------------------------------------------------- {{{2
 
@@ -413,10 +409,3 @@ for item in s:items
 	exe "nnoremap vi".item." T".item."vt".item
 	exe "nnoremap va".item." F".item."vf".item
 endfor
-
-
-" 9. Abbreviations ------------------------------------------------------- {{{1
-
-iabbrev gl Gabriel Lima
-iabbrev gvclima gvclima@gmail.com
-iabbrev ewilogs http://ewilazarus.github.io
