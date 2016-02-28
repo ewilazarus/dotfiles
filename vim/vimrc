@@ -44,6 +44,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer', 'frozen': 1 }
+Plug 'takac/vim-hardtime'
 
 " Language Specifics - Clojure
 Plug 'guns/vim-sexp' | Plug
@@ -89,6 +90,11 @@ let g:ctrlp_custom_ignore = {
 " DelimitMate
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
+
+" Hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_timeout = 1500
+let g:hardtime_showmsg = 1
 
 " NERDTree
 nnoremap <silent><C-N> :NERDTreeToggle<CR>
@@ -242,9 +248,10 @@ nnoremap gV `[v`]
 
 " Local (File) Search
 nnoremap / /\v
+nnoremap ? ?\v
 
-" Global (Directory) Search TODO
-nnoremap ? :Ack ""<LEFT>
+" Global (Directory) Search
+nnoremap <LEADER>a :Ack ""<LEFT>
 
 " Documentation
 nnoremap <F1> K
@@ -408,7 +415,7 @@ function! s:QuickfixFilenames()
 endfunc
 
 
-" 8. Custom Text Objects -------------------------------------------------------- {{{1
+" 8. Custom Text Objects ------------------------------------------------- {{{1
 "    (Many thanks to Conner McDaniel)
 
 let s:items = ["<bar>", "\\", "/", ":", ".", "*", "_"]
