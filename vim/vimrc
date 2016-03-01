@@ -93,11 +93,13 @@ let delimitMate_expand_space = 1
 
 " Hardtime
 let g:hardtime_default_on = 1
-let g:hardtime_timeout = 1500
+let g:hardtime_timeout = 2000
 let g:hardtime_showmsg = 1
 
 " NERDTree
 nnoremap <silent><C-N> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeIgnore = [
 			\ '\.pyc$',
 			\ '\.pyo$',
@@ -382,8 +384,8 @@ augroup END
 " Make text editing more pleasant
 augroup TextEditing
 	autocmd!
-	au FileType markdown,text,tex,rst setlocal textwidth=80 formatoptions+=ta
-	au FileType markdown,text,tex,rst :normal ggVGgq
+	au FileType markdown,tex,rst setlocal textwidth=80 formatoptions+=ta
+	au FileType markdown,tex,rst :normal ggVGgq
 augroup END
 
 
