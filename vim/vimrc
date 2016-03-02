@@ -21,8 +21,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-gtfo'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Buffer Navigation
 Plug 'kien/ctrlp.vim'
@@ -60,18 +58,6 @@ unlet g:plug_url_format
 call plug#end()
 
 " 1.2. Settings ---------------------------------------------------------- {{{2
-
-" Airline
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
 
 " CtrlP
 nnoremap go. :CtrlP<CR>
@@ -187,9 +173,6 @@ endif
 syntax on
 colorscheme badwolf
 
-" Statusline
-set laststatus=2
-
 " Show line numbers
 set number
 set relativenumber
@@ -199,6 +182,12 @@ set colorcolumn=80
 
 " Display '.' for trailing whitespace
 set listchars=tab:→\ ,trail:·,eol:¬
+
+" 3.1. Statusline -------------------------------------------------------- {{{2
+
+set laststatus=2
+set stl=[#%n]\ %F\ %=Row\ %l\ of\ %L;\ Column\ %v
+hi StatusLine ctermbg=black ctermfg=white
 
 
 " 4. Mappings ------------------------------------------------------------ {{{1
@@ -332,6 +321,9 @@ vnoremap - $
 vnoremap <C-D> <C-B>
 vnoremap <C-S> <C-F>
 
+" Quit visual mode with 'space'
+vnoremap <LEADER> <ESC>
+
 " 4.4. Command Mode ------------------------------------------------------ {{{2
 
 " Make 'jk' and 'kj' leave command mode
@@ -394,6 +386,12 @@ augroup CleanFileOnSave
 	au BufWritePre * :call s:RemoveTrailingWhitespace()
 augroup END
 
+" Change status line color when entering insert mode
+augroup StatusLineColor
+	autocmd!
+	au InsertLeave * hi StatusLine ctermbg=black ctermfg=white
+	au InsertEnter * hi StatusLine ctermbg=214 ctermfg=black
+augroup END
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
@@ -429,6 +427,7 @@ function! s:RemoveTrailingWhitespace()
 	%s/\s\+$//e
 	call cursor(l,c)
 endfunc
+
 
 " 8. Custom Text Objects ------------------------------------------------- {{{1
 "    (Many thanks to Conner McDaniel)
