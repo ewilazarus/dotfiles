@@ -388,6 +388,12 @@ augroup TextEditing
 	au FileType markdown,tex,rst :normal ggVGgq
 augroup END
 
+" Remove trailing whitespaces on save
+augroup CleanFileOnSave
+	autocmd!
+	au BufWritePre * :call s:RemoveTrailingWhitespace()
+augroup END
+
 
 " 7. Functions ----------------------------------------------------------- {{{1
 
@@ -416,6 +422,13 @@ function! s:QuickfixFilenames()
 	return join(map(values(bufnrs), 'fnameescape(v:val)'))
 endfunc
 
+" Clean the file
+function! s:RemoveTrailingWhitespace()
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l,c)
+endfunc
 
 " 8. Custom Text Objects ------------------------------------------------- {{{1
 "    (Many thanks to Conner McDaniel)
