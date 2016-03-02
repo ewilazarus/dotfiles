@@ -83,7 +83,7 @@ alias la='la -A --group-directories-first'
 alias l='ls -CF --group-directories-first'
 
 alias tfak='ssh limag@login.informatik.uni-freiburg.de'
-alias tmux='tmux -2' # enables 256 color support for tmux
+alias tmux='tmux -2'  # enables 256 color support for tmux
 alias ack='ack-grep'
 
 alias tmat='tmux -2 attach -t'
@@ -99,7 +99,7 @@ alias blog='cd ~/Documents/blog && workon blog'
 alias open='xdg-open'
 alias nopyc='rm *.pyc'
 
-
+alias cb='xclip -selection c -i'  # thanks to firstdoit
 # 7. Functions ----------------------------------------------------------- {{{1
 
 # EMPTY
