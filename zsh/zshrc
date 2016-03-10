@@ -72,7 +72,7 @@ export MYVIMRC=~/.vimrc
 # Virtualenv(wrapper)
 export WORKON_HOME=~/.venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper
 source $VIRTUALENVWRAPPER_SCRIPT
 
 
