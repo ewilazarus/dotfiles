@@ -171,7 +171,7 @@ if ($COLORTERM == 'gnome-terminal')
 endif
 
 syntax on
-colorscheme badwolf
+colorscheme preto
 
 " Show line numbers
 set number
@@ -373,12 +373,12 @@ augroup DefaultCR
 	autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 augroup END
 
-" Make text editing more pleasant
-augroup TextEditing
-	autocmd!
-	au FileType markdown,tex,rst setlocal textwidth=80 formatoptions+=ta
-	au FileType markdown,tex,rst :normal ggVGgq
-augroup END
+" " Make text editing more pleasant
+" augroup TextEditing
+" 	autocmd!
+" 	au FileType markdown,tex,rst setlocal textwidth=80 formatoptions+=ta
+" 	au FileType markdown,tex,rst :normal ggVGgq
+" augroup END
 
 " Remove trailing whitespaces on save
 augroup CleanFileOnSave

@@ -6,3 +6,6 @@ vim/vim/.netrwhist
 tmux/tmux/plugins/*
 !tmux/tmux/plugins/tpm
 !tmux/tmux/plugins/tpm/*
+
+# FISH
+fish/fish_history
