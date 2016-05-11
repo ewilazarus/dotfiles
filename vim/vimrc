@@ -41,7 +41,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer', 'frozen': 1 }
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer', 'frozen': 0 }
 Plug 'takac/vim-hardtime'
 
 " Language Specifics - Clojure
@@ -78,7 +78,7 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
 " Hardtime
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 let g:hardtime_timeout = 2000
 let g:hardtime_showmsg = 1
 
@@ -137,6 +137,7 @@ set spelllang=en_us
 set visualbell
 set modeline
 set splitright
+set shell=/bin/bash
 
 " 2.1. Tab Preferences --------------------------------------------------- {{{2
 
@@ -171,7 +172,7 @@ if ($COLORTERM == 'gnome-terminal')
 endif
 
 syntax on
-colorscheme preto
+colorscheme molokai
 
 " Show line numbers
 set number
