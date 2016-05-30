@@ -13,7 +13,7 @@
 	email = ewilazarus@gmail.com
 	name = Gabriel Lima
 [alias]
-	l = log --oneline
+	l = log -25 --oneline --reverse
 	pom = push -u origin master
 	aa = add -A
 	cm = commit -m
