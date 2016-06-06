@@ -1,6 +1,7 @@
 # VIM
-vim/vim/plugged/*
-vim/vim/.netrwhist
+vim/plugged/*
+vim/.netrwhist
+nvim/plugged/*
 
 # TMUX
 tmux/tmux/plugins/*
