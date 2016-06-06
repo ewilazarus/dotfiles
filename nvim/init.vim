@@ -21,24 +21,21 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'flazz/vim-colorschemes'
 Plug 'itchyny/lightline.vim'
+Plug 'kien/ctrlp.vim'
 Plug 'neomake/neomake'
 Plug 'raimondi/delimitmate'
 Plug 'sheerun/vim-polyglot'
+Plug 'shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'kien/ctrlp.vim'
 
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'ewilazarus/vim-snippets'
 unlet g:plug_url_format
 
-function! DoRemote(arg)
-	UpdateRemotePlugins
-endfunction
-Plug 'shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 call plug#end()
 
@@ -265,3 +262,8 @@ function! s:RemoveTrailingWhitespace()
 	%s/\s\+$//e
 	call cursor(l,c)
 endfunc
+
+" Deoplete's 'hack'
+function! DoRemote(arg)
+	UpdateRemotePlugins
+endfunction

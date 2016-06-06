@@ -19,7 +19,7 @@ export ZSH=$HOME/.oh-my-zsh
 export TERM='xterm-256color'
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
@@ -66,15 +66,17 @@ bindkey -s '^Z' 'fg\n'
 # 5. Exports ------------------------------------------------------------- {{{1
 
 export MYVIMRC=~/.vimrc
+export MYNVIMRC=~/.config/nvim/init.vim
 
 
 # 6. Aliases ------------------------------------------------------------- {{{1
 
 alias ack='ack-grep'
 
-alias ev='vim ~/.vimrc'
-alias ez='vim ~/.zshrc'
-alias et='vim ~/.tmux.conf'
+alias ev='nvim ~/.vimrc'
+alias env='nvim ~/.config/nvim/init.vim'
+alias ez='nvim ~/.zshrc'
+alias et='nvim ~/.tmux.conf'
 
 alias open='xdg-open'
 
