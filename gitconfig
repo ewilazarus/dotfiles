@@ -1,0 +1,11 @@
+[user]
+	email = gvclima@gmail.com
+	name = Gabriel Lima
+[alias]
+	feature = "!feature() { git checkout -b "feature/$1"; }; feature"
+	hotfix = "!hotfix() { git checkout -b "hotfix/$1"; }; hotfix"
+	logs = "log -10 --reverse --oneline"
+	tags = "log -10 --reverse --oneline --tags --no-walk --simplify-by-decoration"
+	wip = "!git add . && git commit -m ""WIP"""
+	nevermind = "!git reset --hard && git clean -df"
+	amend = "commit --amend --no-edit"
