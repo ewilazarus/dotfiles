@@ -61,7 +61,6 @@ nnoremap <LEADER>h :noh<CR>
 " Breakpoints
 nnoremap <C-B> :vsc Debug.ToggleBreakPoint<CR>
 
-
 " nnoremap gr :vsc Edit.FindAllReferences<cr>
 " nnoremap @T :vsc TestExplorer.RepeatLastRun<cr>
 " nnoremap q; :vsc View.C#Interactive<cr>
