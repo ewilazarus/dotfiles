@@ -1,0 +1,70 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""                                BEHAVIOR                                   ""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ignorecase
+set smartcase
+set incsearch
+set tabstop=4
+set shiftwidth=4
+set backspace=eol,start,indent
+set nostartofline
+set hlsearch
+set autoindent
+set expandtab
+set ttimeout
+set ttimeoutlen=50
+set clipboard=unnamed
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""                                MAPPINGS                                   ""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = "\<SPACE>"
+
+" Toggle fullscreen
+nnoremap <LEADER><SPACE> :vsc View.FullScreen<CR>:vsc Window.AutoHideAll<CR>
+
+" Close current buffer
+nnoremap <LEADER>x :q<CR>    
+
+" Split navigation
+nnoremap <C-H> <C-W>H
+nnoremap <C-J> <C-W>J
+nnoremap <C-K> <C-W>K
+nnoremap <C-L> <C-W>L
+
+" Go to anything
+nnoremap <C-P> :vsc Edit.NavigateTo<CR>
+
+" Redo
+nnoremap U <C-R>
+
+" Refactoring
+nnoremap <LEADER>r :vsc Refactor.Rename<CR>
+vnoremap <LEADER>m :vsc Refactor.ExtractMethod<CR>
+
+" Macro repeat
+nnoremap Q @q
+
+" Make 'Y' behave accordingly
+nnoremap Y v$y
+
+" Disable ex mode
+nnoremap q: <NOP>
+
+" Jump back and forth
+nnoremap <C-I> :vsc View.NavigateBackward<CR>
+nnoremap <C-O> :vsc View.NavigateForward<CR>
+
+" Remove highlight
+nnoremap <LEADER>h :noh<CR>
+
+" Breakpoints
+nnoremap <C-B> :vsc Debug.ToggleBreakPoint<CR>
+
+
+" nnoremap gr :vsc Edit.FindAllReferences<cr>
+" nnoremap @T :vsc TestExplorer.RepeatLastRun<cr>
+" nnoremap q; :vsc View.C#Interactive<cr>
+" nnoremap q: :vsc View.CommandWindow<cr>
+" nnoremap q[ :vsc TestExplorer.ShowTestExplorer<cr>
+" nnoremap q] :vsc View.ErrorList<cr>
