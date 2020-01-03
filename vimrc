@@ -30,6 +30,12 @@ Plug 'w0rp/ale'
 Plug 'vim-scripts/paredit.vim'
 Plug 'junegunn/fzf.vim'
 
+" Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Elixir
+Plug 'slashmili/alchemist.vim'
+
 " CSharp
 Plug 'OmniSharp/omnisharp-vim'
 
